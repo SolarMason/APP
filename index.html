@@ -754,6 +754,7 @@ section { position: relative; z-index: 2; }
   border-radius: 100px;
   flex-shrink: 0;
   transition: background 0.25s var(--ease);
+  cursor: pointer;
 }
 .toggle::after {
   content: "";
@@ -768,102 +769,431 @@ section { position: relative; z-index: 2; }
 .sub.on .toggle::after { transform: translateX(18px); }
 
 /* ========================================================================
-   stack summary (sticky receipt)
+   live quote + proposal modal
    ======================================================================== */
-.stack {
-  max-width: 700px; margin: 60px auto 0;
-  background: var(--surface-1);
+.quote {
+  max-width: 760px; margin: 60px auto 14px;
+  background: linear-gradient(165deg, rgba(94, 92, 230, 0.14), rgba(10, 132, 255, 0.06));
   border: 0.5px solid var(--hairline-2);
   border-radius: var(--r-2xl);
   overflow: hidden;
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: 0 0 80px rgba(94, 92, 230, 0.12);
 }
-.stack-head {
-  padding: 22px 24px 8px;
-  display: flex; align-items: center; gap: 12px;
+.quote-head {
+  padding: 22px 24px;
+  display: flex; align-items: center; gap: 14px;
+  border-bottom: 0.5px solid var(--hairline-1);
 }
-.stack-head-mark {
-  width: 36px; height: 36px;
+.quote-head-mark {
+  width: 40px; height: 40px;
   border-radius: var(--r-icon);
   background: var(--grad-hero);
   display: grid; place-items: center;
   font-family: var(--font-display);
-  font-weight: 800; font-size: 18px; color: white;
+  font-weight: 800; font-size: 20px; color: white;
   letter-spacing: -0.05em;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 4px 12px rgba(94, 92, 230, 0.3);
 }
-.stack-head h4 {
+.quote-head h4 {
   font-family: var(--font-display);
-  font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+  font-size: 19px; font-weight: 600; letter-spacing: -0.02em;
+  margin-bottom: 2px;
 }
-.stack-head-sub { font-size: 13px; color: var(--text-2); }
-
-.stack-list {
-  padding: 8px 12px 0;
+.quote-head-sub { font-size: 13px; color: var(--text-2); }
+.quote-head-total {
+  text-align: right;
+  font-feature-settings: "tnum";
+  flex-shrink: 0;
+}
+.quote-head-total-label {
+  font-size: 11px; color: var(--text-3);
+  letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+}
+.quote-head-total-amount {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;
+  background: var(--grad-hero);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.quote-list {
+  padding: 8px 0;
   max-height: 320px;
   overflow-y: auto;
 }
-.stack-line {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px;
-  border-radius: 12px;
+.quote-line {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 24px;
   font-size: 14px;
+  border-bottom: 0.5px solid var(--hairline-1);
 }
-.stack-line + .stack-line { border-top: 0.5px solid var(--hairline-1); border-radius: 0; padding-top: 12px; padding-bottom: 12px; }
-.stack-line-name { flex: 1; color: var(--text-1); }
-.stack-line-name strong { color: var(--text-0); font-weight: 500; }
-.stack-line-name small { display: block; color: var(--text-3); font-size: 12px; margin-top: 1px; }
-.stack-line-price {
+.quote-line:last-child { border-bottom: 0; }
+.quote-line.locked { background: rgba(10, 132, 255, 0.04); }
+.quote-line-info { flex: 1; min-width: 0; }
+.quote-line-info strong { color: var(--text-0); font-weight: 500; display: block; }
+.quote-line-info small { color: var(--text-3); font-size: 12px; display: block; margin-top: 1px; }
+.quote-line-price {
   font-family: var(--font-display);
   font-weight: 600;
   color: var(--text-0);
   font-feature-settings: "tnum";
+  flex-shrink: 0;
 }
-.stack-line.required .stack-line-name strong::after {
-  content: "Required";
-  display: inline-block;
-  margin-left: 8px;
-  font-family: var(--font-text);
-  font-size: 10px; font-weight: 600;
-  color: var(--blue);
-  letter-spacing: 0.04em; text-transform: uppercase;
-  padding: 2px 6px;
-  background: rgba(10, 132, 255, 0.15);
-  border-radius: 4px;
-  vertical-align: middle;
-}
-
-.stack-foot {
+.quote-line-price small { font-weight: 500; color: var(--text-3); font-size: 11px; margin-left: 2px; }
+.quote-foot {
   padding: 18px 24px calc(20px + var(--safe-bottom));
-  background: var(--bg-2);
+  background: rgba(0, 0, 0, 0.25);
   border-top: 0.5px solid var(--hairline-2);
   display: flex; flex-direction: column; gap: 14px;
 }
 @media (min-width: 600px) {
-  .stack-foot { flex-direction: row; align-items: center; justify-content: space-between; }
+  .quote-foot { flex-direction: row; align-items: center; justify-content: space-between; }
 }
-.stack-total {
+.quote-foot-meta {
+  display: flex; flex-direction: column; gap: 4px;
+  font-size: 13px; color: var(--text-2);
+}
+.quote-foot-meta strong { color: var(--text-1); font-weight: 500; }
+.quote-cta { white-space: nowrap; }
+.quote-meta {
+  text-align: center;
+  font-size: 13px; color: var(--text-3);
+  max-width: 600px; margin: 0 auto;
+  padding: 0 16px;
+}
+.quote-meta a { color: var(--text-1); transition: color 0.2s var(--ease); }
+.quote-meta a:hover { color: var(--text-0); }
+
+/* PROPOSAL MODAL — full-screen takeover */
+.proposal-overlay {
+  position: fixed; inset: 0; z-index: 70;
+  background: rgba(0, 0, 0, 0); backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0);
+  pointer-events: none;
+  transition: all 0.4s var(--ease);
+}
+.proposal-overlay.open { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); pointer-events: auto; }
+
+.proposal-modal {
+  position: fixed; z-index: 71;
+  inset: 0;
   display: flex; flex-direction: column;
+  background: var(--bg-1);
+  transform: translateY(100%);
+  transition: transform 0.55s var(--spring);
+  overflow: hidden;
+}
+.proposal-modal.open { transform: translateY(0); }
+
+.proposal-topbar {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: max(14px, var(--safe-top)) 20px 14px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-bottom: 0.5px solid var(--hairline-1);
+  position: sticky; top: 0; z-index: 5;
+}
+.proposal-topbar h3 {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 600; letter-spacing: -0.02em;
+}
+.proposal-close {
+  width: 32px; height: 32px;
+  border-radius: 50%; background: var(--surface-3);
+  display: grid; place-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.proposal-close::before, .proposal-close::after {
+  content: "";
+  position: absolute;
+  width: 14px; height: 1.5px;
+  background: var(--text-1); border-radius: 2px;
+}
+.proposal-close::before { transform: rotate(45deg); }
+.proposal-close::after { transform: rotate(-45deg); }
+
+.proposal-scroll {
+  flex: 1; overflow-y: auto;
+  padding: 0;
+}
+
+/* The actual proposal "page" — designed like a high-end document */
+.proposal-doc {
+  max-width: 820px;
+  margin: 32px auto;
+  padding: 56px 48px;
+  background: linear-gradient(160deg, #ffffff 0%, #f6f7fc 100%);
+  color: #0a0a0c;
+  border-radius: 24px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .proposal-doc { margin: 16px; padding: 40px 28px; border-radius: 20px; }
+}
+.proposal-doc::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: var(--grad-hero);
+}
+.proposal-doc-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.proposal-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.proposal-brand-mark {
+  width: 48px; height: 48px;
+  border-radius: var(--r-icon);
+  background: var(--grad-hero);
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 22px; color: white;
+  letter-spacing: -0.05em;
+  box-shadow: 0 4px 16px rgba(94, 92, 230, 0.4);
+}
+.proposal-brand-name {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 26px; letter-spacing: -0.04em;
+  color: #0a0a0c;
+}
+.proposal-brand-tag {
+  font-size: 12px; color: rgba(0,0,0,0.5);
+  letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600;
+}
+.proposal-meta {
+  text-align: right;
+  font-size: 12px; color: rgba(0,0,0,0.55);
   font-feature-settings: "tnum";
 }
-.stack-total-label { font-size: 13px; color: var(--text-2); }
-.stack-total-amount {
+.proposal-meta strong {
+  display: block;
+  color: #0a0a0c;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.proposal-title-block { text-align: center; margin: 16px 0 36px; }
+.proposal-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
+  margin-bottom: 10px;
+}
+.proposal-title {
   font-family: var(--font-display);
-  font-size: 32px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1.05;
+  color: #0a0a0c;
+  margin-bottom: 12px;
 }
-.stack-total-amount small {
-  font-size: 15px; font-weight: 500; color: var(--text-2);
-  margin-left: 4px;
+.proposal-title .grad {
+  background: var(--grad-hero);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.stack-cta {
-  background: var(--grad-blue); color: white;
-  padding: 16px 28px; border-radius: 100px;
-  font-size: 16px; font-weight: 600;
+.proposal-subtitle {
+  font-size: 16px; color: rgba(0,0,0,0.6);
+  max-width: 520px; margin: 0 auto;
+  line-height: 1.5;
+}
+
+.proposal-section { margin-bottom: 32px; }
+.proposal-section-title {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.proposal-stack { display: flex; flex-direction: column; gap: 0; }
+.proposal-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.08);
+}
+.proposal-row:last-child { border-bottom: 0; }
+.proposal-row-ico {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #0a84ff, #5e5ce6);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  box-shadow: 0 2px 8px rgba(94, 92, 230, 0.3);
+}
+.proposal-row.req .proposal-row-ico { background: linear-gradient(135deg, #5e5ce6, #bf5af2); }
+.proposal-row-info { flex: 1; }
+.proposal-row-info strong {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 15px;
+  color: #0a0a0c;
+  display: block;
+}
+.proposal-row-info small {
+  font-size: 12px; color: rgba(0,0,0,0.55);
+  display: block; margin-top: 2px;
+}
+.proposal-row.req .proposal-row-info strong::after {
+  content: "Required";
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 10px; font-weight: 700;
+  color: #5e5ce6;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 2px 6px;
+  background: rgba(94, 92, 230, 0.12);
+  border-radius: 4px;
+  vertical-align: 2px;
+}
+.proposal-row-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: #0a0a0c;
+  font-feature-settings: "tnum";
+  text-align: right;
+  flex-shrink: 0;
+}
+.proposal-row-price small {
+  font-size: 11px; font-weight: 500;
+  color: rgba(0,0,0,0.4);
+  margin-left: 1px;
+}
+
+.proposal-totals {
+  background: linear-gradient(165deg, rgba(94, 92, 230, 0.08), rgba(10, 132, 255, 0.04));
+  border: 1px solid rgba(94, 92, 230, 0.18);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 24px 0 32px;
+}
+.proposal-total-row {
+  display: flex; align-items: center; justify-content: space-between;
+  font-feature-settings: "tnum";
+  font-size: 15px;
+  padding: 8px 0;
+}
+.proposal-total-row.big {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin-top: 8px;
+}
+.proposal-total-row.big strong {
+  background: var(--grad-hero);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 32px;
+}
+.proposal-total-row.savings {
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  font-style: italic;
+}
+.proposal-total-row.savings strong { color: #30a256; font-style: normal; }
+
+.proposal-savings-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.proposal-savings-card {
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.proposal-savings-card-num {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+  color: #0a0a0c;
+  margin-bottom: 2px;
+  font-feature-settings: "tnum";
+}
+.proposal-savings-card-num.green { color: #30a256; }
+.proposal-savings-card-num.red { color: #d12d3a; text-decoration: line-through; }
+.proposal-savings-card-label {
+  font-size: 11px; color: rgba(0,0,0,0.55);
+  font-weight: 500;
+}
+
+.proposal-doc-foot {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 12px; color: rgba(0,0,0,0.5);
+  text-align: center;
+  line-height: 1.6;
+}
+.proposal-doc-foot strong { color: #0a0a0c; font-weight: 600; }
+
+/* form below proposal */
+.proposal-form-block {
+  max-width: 820px;
+  margin: 24px auto 0;
+  padding: 32px 32px;
+  background: var(--surface-1);
+  border: 0.5px solid var(--hairline-2);
+  border-radius: 24px;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+}
+@media (max-width: 768px) {
+  .proposal-form-block { margin: 16px; padding: 24px 20px; }
+}
+.proposal-form-block h4 {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 600; letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+.proposal-form-block > p {
+  font-size: 14px; color: var(--text-2);
+  margin-bottom: 22px;
+}
+
+.proposal-actions {
+  position: sticky; bottom: 0;
+  flex-shrink: 0;
+  display: flex; gap: 10px;
+  padding: 14px 20px calc(14px + var(--safe-bottom));
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-top: 0.5px solid var(--hairline-2);
+  z-index: 5;
+}
+.proposal-actions .btn {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 15px;
   white-space: nowrap;
-  transition: all 0.2s var(--ease);
 }
-.stack-cta:hover { transform: scale(0.97); filter: brightness(1.1); }
-.stack-cta:active { transform: scale(0.94); }
+.proposal-actions .btn svg {
+  width: 16px; height: 16px;
+}
 
 /* PWA vs alternatives table */
 .compare {
@@ -1073,17 +1403,6 @@ footer {
 }
 .sheet-close::before { transform: rotate(45deg); }
 .sheet-close::after { transform: rotate(-45deg); }
-
-.sheet-stack-preview {
-  background: var(--surface-2); border: 0.5px solid var(--hairline-1);
-  border-radius: 14px;
-  padding: 12px 14px;
-  margin-bottom: 18px;
-  font-size: 13px;
-  color: var(--text-1);
-}
-.sheet-stack-preview strong { color: var(--text-0); display: block; font-size: 14px; margin-bottom: 4px; }
-.sheet-stack-preview .total { color: var(--blue); font-weight: 600; }
 
 .field { margin-bottom: 14px; }
 .field-label {
@@ -1366,7 +1685,7 @@ footer {
         <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subdomain: yours.app.nepa-pro.com</li>
         <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>5-day delivery, free updates</li>
       </ul>
-      <button class="btn btn-primary" data-open-sheet style="width:100%">Start with the base &mdash; $49/mo</button>
+      <a class="btn btn-primary" data-stripe="base" target="_blank" rel="noopener" style="width:100%">Subscribe to Base PWA &mdash; $49/mo</a>
     </div>
 
     <!-- CATALOG HEAD -->
@@ -1391,7 +1710,7 @@ footer {
               <div class="sub-desc">Transactional &amp; marketing emails. Custom domain.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="sms" data-name="SMS messaging" data-price="29">
@@ -1402,7 +1721,7 @@ footer {
               <div class="sub-desc">Two-way text. Confirmations, reminders, support.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="push" data-name="Push notifications" data-price="15">
@@ -1413,7 +1732,7 @@ footer {
               <div class="sub-desc">Native push to home-screen apps. Segments &amp; campaigns.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="livechat" data-name="Live chat" data-price="25">
@@ -1424,7 +1743,7 @@ footer {
               <div class="sub-desc">Real-time chat in-app. Multi-agent inbox, mobile.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="ai" data-name="AI chatbot" data-price="39">
@@ -1435,7 +1754,7 @@ footer {
               <div class="sub-desc">24/7 smart bot trained on your business &amp; FAQs.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="newsletter" data-name="Newsletter" data-price="15">
@@ -1446,7 +1765,7 @@ footer {
               <div class="sub-desc">List builder, signup forms, double opt-in compliance.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1467,7 +1786,7 @@ footer {
               <div class="sub-desc">One-time payments, deposits, donations, gift cards.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="subscriptions" data-name="Subscription billing" data-price="35">
@@ -1478,7 +1797,7 @@ footer {
               <div class="sub-desc">Recurring plans, trials, upgrades, prorated changes.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="catalog" data-name="Product catalog" data-price="25">
@@ -1489,7 +1808,7 @@ footer {
               <div class="sub-desc">Items, prices, images, variants &mdash; full storefront.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="invoicing" data-name="Invoicing" data-price="19">
@@ -1500,7 +1819,7 @@ footer {
               <div class="sub-desc">Send invoices, track paid/unpaid, auto-reminders.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="coupons" data-name="Coupons &amp; discounts" data-price="15">
@@ -1511,7 +1830,7 @@ footer {
               <div class="sub-desc">Discount codes, expirations, single-use, BOGO.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1532,7 +1851,7 @@ footer {
               <div class="sub-desc">Email/password signup, sessions, password reset.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="social" data-name="Social login" data-price="15">
@@ -1543,7 +1862,7 @@ footer {
               <div class="sub-desc">Sign in with Apple, Google, Facebook &mdash; one tap.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="member" data-name="Member portal" data-price="39">
@@ -1554,7 +1873,7 @@ footer {
               <div class="sub-desc">Gated content, profile pages, member dashboards.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="roles" data-name="Roles &amp; permissions" data-price="20">
@@ -1565,7 +1884,7 @@ footer {
               <div class="sub-desc">Admin, manager, staff, customer &mdash; granular access.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1586,7 +1905,7 @@ footer {
               <div class="sub-desc">Custom data, queries, backups, growing tables.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="crm" data-name="CRM integration" data-price="35">
@@ -1597,7 +1916,7 @@ footer {
               <div class="sub-desc">SuiteDash, HubSpot, Salesforce &mdash; bi-directional sync.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="analytics" data-name="Analytics" data-price="15">
@@ -1608,7 +1927,7 @@ footer {
               <div class="sub-desc">Visitors, conversions, revenue, retention &mdash; live.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="cms" data-name="Blog / CMS" data-price="19">
@@ -1619,7 +1938,7 @@ footer {
               <div class="sub-desc">Posts, categories, drafts, scheduled publishing.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="gallery" data-name="Photo gallery" data-price="15">
@@ -1630,7 +1949,7 @@ footer {
               <div class="sub-desc">Albums, lightbox, filters &mdash; portfolios &amp; products.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="search" data-name="Site search" data-price="15">
@@ -1641,7 +1960,7 @@ footer {
               <div class="sub-desc">Fast in-app search across all your content.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1662,7 +1981,7 @@ footer {
               <div class="sub-desc">Bookable time slots, rules, reminders, sync.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="reservations" data-name="Reservations" data-price="29">
@@ -1673,7 +1992,7 @@ footer {
               <div class="sub-desc">Tables, rooms, equipment &mdash; capacity &amp; deposits.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="events" data-name="Event tickets" data-price="25">
@@ -1684,7 +2003,7 @@ footer {
               <div class="sub-desc">Sell tickets, scan at door, capacity &amp; tiers.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="calsync" data-name="Calendar sync" data-price="15">
@@ -1695,7 +2014,7 @@ footer {
               <div class="sub-desc">Two-way sync with Google &amp; Apple Calendar.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1716,7 +2035,7 @@ footer {
               <div class="sub-desc">Assign work, track crews, GPS check-ins, signatures.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="quotes" data-name="Quote builder" data-price="25">
@@ -1727,7 +2046,7 @@ footer {
               <div class="sub-desc">Itemized estimates with line items, taxes, e-sign.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="reviews" data-name="Reviews" data-price="15">
@@ -1738,7 +2057,7 @@ footer {
               <div class="sub-desc">Collect, display, moderate &mdash; push to Google &amp; Yelp.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="loyalty" data-name="Loyalty program" data-price="25">
@@ -1749,7 +2068,7 @@ footer {
               <div class="sub-desc">Points, stamps, tiers, push-back rewards.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="referrals" data-name="Referral tracking" data-price="20">
@@ -1760,7 +2079,7 @@ footer {
               <div class="sub-desc">Customer-share links, tracking, payout flows.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
@@ -1781,7 +2100,7 @@ footer {
               <div class="sub-desc">yourbrand.com instead of subdomain. SSL included.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$9<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$9<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="white" data-name="White-glove support" data-price="75">
@@ -1792,7 +2111,7 @@ footer {
               <div class="sub-desc">Same-day fixes, dedicated channel, monthly check-ins.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$75<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$75<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="wrap" data-name="Native app wrap" data-price="99">
@@ -1803,7 +2122,7 @@ footer {
               <div class="sub-desc">Optional &mdash; ship to App Store &amp; Play Store too.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$99<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$99<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
 
         <div class="sub" data-id="priority" data-name="Priority delivery" data-price="49">
@@ -1814,33 +2133,45 @@ footer {
               <div class="sub-desc">3-day build instead of 5. Front-of-the-line builds.</div>
             </div>
           </div>
-          <div class="sub-bottom"><div class="sub-price">$49<small>/mo</small></div><div class="toggle"></div></div>
+          <div class="sub-bottom"><div class="sub-price">$49<small>/mo</small></div><div class="toggle" role="switch" aria-checked="false"></div></div>
         </div>
       </div>
     </div>
 
-    <!-- STACK SUMMARY -->
-    <div class="stack reveal" id="stack">
-      <div class="stack-head">
-        <div class="stack-head-mark">a.</div>
-        <div>
-          <h4 id="stackTitle">Your stack</h4>
-          <div class="stack-head-sub" id="stackSub">Base PWA only</div>
+    <!-- LIVE QUOTE — updates as toggles flip -->
+    <div class="quote reveal" id="quote">
+      <div class="quote-head">
+        <div class="quote-head-mark">a.</div>
+        <div style="flex:1">
+          <h4 id="quoteTitle">Your Quote</h4>
+          <div class="quote-head-sub" id="quoteSub">Toggle add-ons above to build your stack</div>
+        </div>
+        <div class="quote-head-total">
+          <div class="quote-head-total-label">Monthly</div>
+          <div class="quote-head-total-amount">$<span id="quoteMonthly">49</span></div>
         </div>
       </div>
-      <div class="stack-list" id="stackList">
-        <div class="stack-line required">
-          <div class="stack-line-name"><strong>Base PWA</strong><small>Custom-built, hosted, installable</small></div>
-          <div class="stack-line-price">$49<small>/mo</small></div>
+      <div class="quote-list" id="quoteList">
+        <div class="quote-line locked">
+          <div class="quote-line-info"><strong>Base PWA</strong><small>Custom-built, hosted, installable &middot; required</small></div>
+          <div class="quote-line-price">$49<small>/mo</small></div>
         </div>
       </div>
-      <div class="stack-foot">
-        <div class="stack-total">
-          <div class="stack-total-label">Your monthly subscription</div>
-          <div class="stack-total-amount">$<span id="stackTotal">49</span><small>/month</small></div>
+      <div class="quote-foot">
+        <div class="quote-foot-meta">
+          <div><strong>Setup</strong> &middot; <span style="color:var(--green)">Always waived</span></div>
+          <div><strong>Annual</strong> &middot; $<span id="quoteAnnual">588</span>/year</div>
         </div>
-        <button class="stack-cta" data-open-sheet>Subscribe with this stack</button>
+        <button class="btn btn-primary quote-cta" id="generateProposalBtn">
+          Generate visual proposal
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
+    </div>
+
+    <!-- HELPER LINKS UNDER QUOTE -->
+    <div class="quote-meta reveal">
+      Need a hand? Call <a href="tel:+15706777971">570-677-7971</a> or email <a href="mailto:service@nepa-pro.com">service@nepa-pro.com</a> &middot; Clarks Summit, PA &middot; Veteran owned
     </div>
 
     <!-- COMPARE TABLE -->
@@ -1912,7 +2243,7 @@ footer {
       </div>
       <div class="faq-item">
         <button class="faq-q">Do you build it overseas? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">No. Every app is designed and built in-house in Northeast Pennsylvania. Veteran owned and operated. You talk to the people doing the work. No agencies, no Fiverr, no hand-offs.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">No. Every app is designed and built in-house in Clarks Summit, Pennsylvania &mdash; the heart of NEPA. Veteran owned and operated. You talk to the people doing the work. No agencies, no Fiverr, no hand-offs. Reach us anytime at <a href="tel:+15706777971" style="color:var(--text-0);font-weight:500">570-677-7971</a> or <a href="mailto:service@nepa-pro.com" style="color:var(--text-0);font-weight:500">service@nepa-pro.com</a>.</div></div>
       </div>
     </div>
   </div>
@@ -1924,7 +2255,13 @@ footer {
     <div class="cta-card reveal">
       <h2>Your app. <span class="gradient-text">Ready in 5 days.</span></h2>
       <p>Pick your stack. We build it. Your customers install it. From $49/month. Setup waived. Cancel anytime.</p>
-      <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
+      <div class="hero-cta" style="justify-content:center">
+        <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
+        <a href="tel:+15706777971" class="btn btn-secondary">Call 570-677-7971</a>
+      </div>
+      <p style="position:relative;font-size:13px;color:var(--text-3);margin-top:18px">
+        Or email <a href="mailto:service@nepa-pro.com" style="color:var(--text-1);border-bottom:1px solid var(--hairline-2)">service@nepa-pro.com</a> &middot; Clarks Summit, PA
+      </p>
     </div>
   </div>
 </section>
@@ -1939,9 +2276,10 @@ footer {
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <a href="mailto:hello@app.nepa-pro.com">Contact</a>
+        <a href="mailto:service@nepa-pro.com">service@nepa-pro.com</a>
+        <a href="tel:+15706777971">570-677-7971</a>
       </div>
-      <div>&copy; 2026 app. &middot; A NEPA-PRO product &middot; Veteran owned</div>
+      <div>&copy; 2026 app. &middot; A NEPA-PRO product &middot; Clarks Summit, PA &middot; Veteran owned &amp; operated</div>
     </div>
   </div>
 </footer>
@@ -1960,13 +2298,12 @@ footer {
 <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetTitle" aria-modal="true">
   <div class="sheet-handle"></div>
   <div class="sheet-header">
-    <h3 id="sheetTitle">Subscribe to your stack</h3>
+    <h3 id="sheetTitle">Get a custom quote</h3>
     <button class="sheet-close" id="sheetClose" aria-label="Close"></button>
   </div>
-  <div class="sheet-stack-preview" id="sheetStackPreview">
-    <strong>Your selected stack:</strong>
-    <div id="sheetStackContent">Base PWA only &mdash; <span class="total">$49/month</span></div>
-  </div>
+  <p style="font-size:14px;color:var(--text-2);margin-bottom:18px;line-height:1.5">
+    Tell us about your business and we&rsquo;ll send you a single Stripe Checkout link with the right stack bundled for you.
+  </p>
   <form id="briefForm" novalidate>
     <div class="field">
       <label class="field-label" for="f-name">Your name</label>
@@ -1987,13 +2324,151 @@ footer {
       <input class="field-input" id="f-business" name="business" type="text" autocomplete="organization">
     </div>
     <div class="field">
-      <label class="field-label" for="f-brief">What's the app for?</label>
+      <label class="field-label" for="f-brief">What&rsquo;s the app for?</label>
       <textarea class="field-textarea" id="f-brief" name="brief" placeholder="A loyalty app for our coffee shop. Customers earn stamps, we push specials..."></textarea>
     </div>
     <button type="submit" class="sheet-submit">Send my brief &mdash; we reply same day</button>
-    <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">We send your custom Stripe Checkout link within 24 hours.</p>
+    <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px;line-height:1.6">
+      We send your custom Stripe Checkout link within 24 hours.<br>
+      Prefer to talk? Call <a href="tel:+15706777971" style="color:var(--text-1);font-weight:600">570-677-7971</a> or email <a href="mailto:service@nepa-pro.com" style="color:var(--text-1);font-weight:600">service@nepa-pro.com</a>
+    </p>
   </form>
 </div>
+
+<!-- PROPOSAL MODAL — beautiful visual quote document -->
+<div class="proposal-overlay" id="proposalOverlay"></div>
+<div class="proposal-modal" id="proposalModal" role="dialog" aria-modal="true" aria-labelledby="proposalTitleBar">
+  <div class="proposal-topbar">
+    <h3 id="proposalTitleBar">Your Custom Proposal</h3>
+    <button class="proposal-close" id="proposalClose" aria-label="Close"></button>
+  </div>
+
+  <div class="proposal-scroll">
+    <!-- the styled proposal document — captured for PDF -->
+    <div class="proposal-doc" id="proposalDoc">
+      <div class="proposal-doc-head">
+        <div class="proposal-brand">
+          <div class="proposal-brand-mark">a.</div>
+          <div>
+            <div class="proposal-brand-name">app.</div>
+            <div class="proposal-brand-tag">A NEPA-PRO Product</div>
+          </div>
+        </div>
+        <div class="proposal-meta">
+          <strong>Proposal</strong>
+          <div id="proposalNumber">APP-—</div>
+          <div id="proposalDate">—</div>
+        </div>
+      </div>
+
+      <div class="proposal-title-block">
+        <div class="proposal-eyebrow">Custom Progressive Web App</div>
+        <h1 class="proposal-title">Your business. <span class="grad">As an app.</span></h1>
+        <p class="proposal-subtitle">A custom PWA built and hosted by NEPA-PRO &mdash; installable on iPhone, Android, and desktop. Setup waived. Cancel anytime.</p>
+      </div>
+
+      <div class="proposal-section">
+        <div class="proposal-section-title">Your Stack</div>
+        <div class="proposal-stack" id="proposalStack">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <div class="proposal-totals">
+        <div class="proposal-total-row">
+          <span>Setup fee</span>
+          <span style="text-decoration:line-through;color:rgba(0,0,0,0.4)">$499</span>
+        </div>
+        <div class="proposal-total-row">
+          <span><strong>Setup fee waived</strong></span>
+          <strong style="color:#30a256">$0</strong>
+        </div>
+        <div class="proposal-total-row">
+          <span>Annual total</span>
+          <span>$<span id="proposalAnnual">588</span>/year</span>
+        </div>
+        <div class="proposal-total-row big">
+          <span>Monthly investment</span>
+          <strong>$<span id="proposalMonthly">49</span></strong>
+        </div>
+      </div>
+
+      <div class="proposal-section">
+        <div class="proposal-section-title">Why this beats the alternative</div>
+        <div class="proposal-savings-grid">
+          <div class="proposal-savings-card">
+            <div class="proposal-savings-card-num red">$20K+</div>
+            <div class="proposal-savings-card-label">Native iOS app cost</div>
+          </div>
+          <div class="proposal-savings-card">
+            <div class="proposal-savings-card-num red">30%</div>
+            <div class="proposal-savings-card-label">Apple/Google fee</div>
+          </div>
+          <div class="proposal-savings-card">
+            <div class="proposal-savings-card-num green">5 days</div>
+            <div class="proposal-savings-card-label">To live app</div>
+          </div>
+          <div class="proposal-savings-card">
+            <div class="proposal-savings-card-num green">0%</div>
+            <div class="proposal-savings-card-label">Platform cut</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proposal-doc-foot">
+        <strong>app. by NEPA-PRO</strong> &middot; Clarks Summit, PA<br>
+        <strong>570-677-7971</strong> &middot; service@nepa-pro.com &middot; app.nepa-pro.com<br>
+        Veteran owned and operated &middot; Pricing valid 30 days from date of proposal
+      </div>
+    </div>
+
+    <!-- form below the doc -->
+    <div class="proposal-form-block">
+      <h4>Send this proposal to NEPA-PRO</h4>
+      <p>We&rsquo;ll receive your stack and reply within 24 hours with a single Stripe Checkout link bundling everything you selected.</p>
+      <form id="proposalForm" novalidate>
+        <div class="field">
+          <label class="field-label" for="p-name">Your name</label>
+          <input class="field-input" id="p-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="p-email">Email</label>
+            <input class="field-input" id="p-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="p-phone">Phone</label>
+            <input class="field-input" id="p-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="p-business">Business name</label>
+          <input class="field-input" id="p-business" name="business" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label class="field-label" for="p-brief">Anything we should know?</label>
+          <textarea class="field-textarea" id="p-brief" name="brief" placeholder="What's the app for? Any specific requirements..."></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div style="height: 24px"></div>
+  </div>
+
+  <div class="proposal-actions">
+    <button class="btn btn-secondary" id="downloadProposalBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+    <button class="btn btn-primary" id="sendProposalBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Send proposal to NEPA-PRO
+    </button>
+  </div>
+</div>
+
+<!-- html2pdf for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
 // status bar live time
@@ -2037,46 +2512,276 @@ footer {
   }, 4500);
 })();
 
-// subscription stack logic
-const BASE_PRICE = 49;
-const stackList = document.getElementById('stackList');
-const stackTotalEl = document.getElementById('stackTotal');
-const stackSubEl = document.getElementById('stackSub');
-const sheetStackContent = document.getElementById('sheetStackContent');
+// ============================================================
+// STRIPE PAYMENT LINKS
+// ============================================================
+// Replace each placeholder URL below with the live Stripe
+// Payment Link you create in your nepa-pro.com Stripe account.
+// The buttons will automatically pick these up on page load.
+// ============================================================
+const STRIPE_LINKS = {
+  // Base PWA
+  base:         'https://secure.nepa-pro.com/b/eVqcN5bch5HtgkB9O52cg0n',
 
-function updateStack(){
-  const active = Array.from(document.querySelectorAll('.sub.on'));
-  let monthly = BASE_PRICE;
-  active.forEach(s => monthly += parseInt(s.dataset.price));
+  // Communications
+  email:        'https://buy.stripe.com/REPLACE_WITH_EMAIL_LINK',
+  sms:          'https://buy.stripe.com/REPLACE_WITH_SMS_LINK',
+  push:         'https://buy.stripe.com/REPLACE_WITH_PUSH_LINK',
+  livechat:     'https://buy.stripe.com/REPLACE_WITH_LIVECHAT_LINK',
+  ai:           'https://buy.stripe.com/REPLACE_WITH_AI_CHATBOT_LINK',
+  newsletter:   'https://buy.stripe.com/REPLACE_WITH_NEWSLETTER_LINK',
 
-  // build stack list
-  let html = '<div class="stack-line required"><div class="stack-line-name"><strong>Base PWA</strong><small>Custom-built, hosted, installable</small></div><div class="stack-line-price">$' + BASE_PRICE + '<small>/mo</small></div></div>';
-  active.forEach(s => {
-    html += '<div class="stack-line"><div class="stack-line-name"><strong>' + s.dataset.name + '</strong></div><div class="stack-line-price">$' + s.dataset.price + '<small>/mo</small></div></div>';
-  });
-  stackList.innerHTML = html;
+  // Commerce
+  stripe:       'https://buy.stripe.com/REPLACE_WITH_STRIPE_PAYMENTS_LINK',
+  subscriptions:'https://buy.stripe.com/REPLACE_WITH_SUBSCRIPTIONS_LINK',
+  catalog:      'https://buy.stripe.com/REPLACE_WITH_CATALOG_LINK',
+  invoicing:    'https://buy.stripe.com/REPLACE_WITH_INVOICING_LINK',
+  coupons:      'https://buy.stripe.com/REPLACE_WITH_COUPONS_LINK',
 
-  stackTotalEl.textContent = monthly;
-  stackSubEl.textContent = active.length === 0
-    ? 'Base PWA only'
-    : 'Base + ' + active.length + ' add-on' + (active.length === 1 ? '' : 's');
+  // Users & Accounts
+  auth:         'https://buy.stripe.com/REPLACE_WITH_AUTH_LINK',
+  social:       'https://buy.stripe.com/REPLACE_WITH_SOCIAL_LOGIN_LINK',
+  member:       'https://buy.stripe.com/REPLACE_WITH_MEMBER_PORTAL_LINK',
+  roles:        'https://buy.stripe.com/REPLACE_WITH_ROLES_LINK',
 
-  // update sheet preview
-  if (active.length === 0) {
-    sheetStackContent.innerHTML = 'Base PWA only &mdash; <span class="total">$' + monthly + '/month</span>';
+  // Data & Content
+  db:           'https://buy.stripe.com/REPLACE_WITH_DATABASE_LINK',
+  crm:          'https://buy.stripe.com/REPLACE_WITH_CRM_LINK',
+  analytics:    'https://buy.stripe.com/REPLACE_WITH_ANALYTICS_LINK',
+  cms:          'https://buy.stripe.com/REPLACE_WITH_CMS_LINK',
+  gallery:      'https://buy.stripe.com/REPLACE_WITH_GALLERY_LINK',
+  search:       'https://buy.stripe.com/REPLACE_WITH_SEARCH_LINK',
+
+  // Booking
+  appts:        'https://buy.stripe.com/REPLACE_WITH_APPOINTMENTS_LINK',
+  reservations: 'https://buy.stripe.com/REPLACE_WITH_RESERVATIONS_LINK',
+  events:       'https://buy.stripe.com/REPLACE_WITH_EVENTS_LINK',
+  calsync:      'https://buy.stripe.com/REPLACE_WITH_CALENDAR_SYNC_LINK',
+
+  // Operations & Marketing
+  dispatch:     'https://buy.stripe.com/REPLACE_WITH_DISPATCH_LINK',
+  quotes:       'https://buy.stripe.com/REPLACE_WITH_QUOTES_LINK',
+  reviews:      'https://buy.stripe.com/REPLACE_WITH_REVIEWS_LINK',
+  loyalty:      'https://buy.stripe.com/REPLACE_WITH_LOYALTY_LINK',
+  referrals:    'https://buy.stripe.com/REPLACE_WITH_REFERRALS_LINK',
+
+  // Premium
+  domain:       'https://buy.stripe.com/REPLACE_WITH_CUSTOM_DOMAIN_LINK',
+  white:        'https://buy.stripe.com/REPLACE_WITH_WHITEGLOVE_LINK',
+  wrap:         'https://buy.stripe.com/REPLACE_WITH_NATIVE_WRAP_LINK',
+  priority:     'https://buy.stripe.com/REPLACE_WITH_PRIORITY_LINK'
+};
+
+// Wire base PWA card button to the real Stripe Payment Link
+function wireSubscribe(el, link) {
+  if (!el) return;
+  if (link && !link.includes('REPLACE_WITH')) {
+    el.href = link;
   } else {
-    const names = active.map(s => s.dataset.name).join(', ');
-    sheetStackContent.innerHTML = 'Base PWA + ' + names + ' &mdash; <span class="total">$' + monthly + '/month</span>';
+    el.removeAttribute('target');
+    el.removeAttribute('rel');
+    el.removeAttribute('href');
+    el.dataset.openSheet = '';
+    el.style.cursor = 'pointer';
   }
+}
+wireSubscribe(document.querySelector('[data-stripe="base"]'), STRIPE_LINKS.base);
+
+// ============================================================
+// LIVE QUOTE — toggle add-ons, watch the total update
+// ============================================================
+const BASE_PRICE = 49;
+
+const quoteList = document.getElementById('quoteList');
+const quoteMonthlyEl = document.getElementById('quoteMonthly');
+const quoteAnnualEl = document.getElementById('quoteAnnual');
+const quoteSubEl = document.getElementById('quoteSub');
+
+function getActiveAddons() {
+  return Array.from(document.querySelectorAll('.sub.on')).map(s => ({
+    id: s.dataset.id,
+    name: s.dataset.name,
+    desc: s.querySelector('.sub-desc')?.textContent || '',
+    price: parseInt(s.dataset.price)
+  }));
+}
+
+function calcMonthly() {
+  return BASE_PRICE + getActiveAddons().reduce((s, a) => s + a.price, 0);
+}
+
+function updateQuote() {
+  const addons = getActiveAddons();
+  const monthly = calcMonthly();
+
+  // Build quote list
+  let html = '<div class="quote-line locked"><div class="quote-line-info"><strong>Base PWA</strong><small>Custom-built, hosted, installable &middot; required</small></div><div class="quote-line-price">$' + BASE_PRICE + '<small>/mo</small></div></div>';
+  addons.forEach(a => {
+    html += '<div class="quote-line"><div class="quote-line-info"><strong>' + a.name + '</strong></div><div class="quote-line-price">$' + a.price + '<small>/mo</small></div></div>';
+  });
+  quoteList.innerHTML = html;
+
+  quoteMonthlyEl.textContent = monthly;
+  quoteAnnualEl.textContent = monthly * 12;
+  quoteSubEl.textContent = addons.length === 0
+    ? 'Toggle add-ons above to build your stack'
+    : 'Base PWA + ' + addons.length + ' add-on' + (addons.length === 1 ? '' : 's');
 }
 
 document.querySelectorAll('.sub').forEach(s => {
   s.addEventListener('click', () => {
-    s.classList.toggle('on');
-    updateStack();
+    const isOn = s.classList.toggle('on');
+    s.querySelector('.toggle')?.setAttribute('aria-checked', isOn ? 'true' : 'false');
+    updateQuote();
   });
 });
-updateStack();
+updateQuote();
+
+// ============================================================
+// PROPOSAL MODAL — generates the visual proposal document
+// ============================================================
+const proposalOverlay = document.getElementById('proposalOverlay');
+const proposalModal = document.getElementById('proposalModal');
+const proposalStack = document.getElementById('proposalStack');
+const proposalMonthly = document.getElementById('proposalMonthly');
+const proposalAnnual = document.getElementById('proposalAnnual');
+const proposalDate = document.getElementById('proposalDate');
+const proposalNumber = document.getElementById('proposalNumber');
+
+function buildProposal() {
+  const addons = getActiveAddons();
+  const monthly = calcMonthly();
+
+  // Header info
+  const now = new Date();
+  proposalDate.textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  // 4-character random pseudo-id like "APP-A8F3"
+  const pid = Math.random().toString(36).substring(2, 6).toUpperCase();
+  proposalNumber.textContent = 'APP-' + pid;
+
+  // Build stack list (base required + add-ons)
+  let stackHtml = '<div class="proposal-row req">'
+    + '<div class="proposal-row-ico">a.</div>'
+    + '<div class="proposal-row-info"><strong>Base PWA</strong><small>Custom-built, hosted, installable on every device, works offline</small></div>'
+    + '<div class="proposal-row-price">$49<small>/mo</small></div>'
+    + '</div>';
+
+  addons.forEach(a => {
+    const initial = a.name.charAt(0);
+    stackHtml += '<div class="proposal-row">'
+      + '<div class="proposal-row-ico">' + initial + '</div>'
+      + '<div class="proposal-row-info"><strong>' + a.name + '</strong><small>' + a.desc + '</small></div>'
+      + '<div class="proposal-row-price">$' + a.price + '<small>/mo</small></div>'
+      + '</div>';
+  });
+  proposalStack.innerHTML = stackHtml;
+
+  proposalMonthly.textContent = monthly;
+  proposalAnnual.textContent = monthly * 12;
+}
+
+function openProposal() {
+  buildProposal();
+  proposalModal.classList.add('open');
+  proposalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProposal() {
+  proposalModal.classList.remove('open');
+  proposalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('generateProposalBtn').addEventListener('click', openProposal);
+document.getElementById('proposalClose').addEventListener('click', closeProposal);
+proposalOverlay.addEventListener('click', closeProposal);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && proposalModal.classList.contains('open')) closeProposal();
+});
+
+// ============================================================
+// PDF DOWNLOAD — html2pdf captures the proposal-doc element
+// ============================================================
+function generatePDF(callback) {
+  const el = document.getElementById('proposalDoc');
+  const filename = 'app-proposal-' + Date.now() + '.pdf';
+  const opts = {
+    margin: 0,
+    filename: filename,
+    image: { type: 'jpeg', quality: 0.96 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f6f7fc' },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css'] }
+  };
+  if (typeof html2pdf === 'undefined') {
+    alert('PDF generator is still loading. Please try again in a moment.');
+    return;
+  }
+  const builder = html2pdf().set(opts).from(el);
+  if (callback) {
+    builder.save().then(() => callback(filename));
+  } else {
+    builder.save();
+  }
+}
+
+document.getElementById('downloadProposalBtn').addEventListener('click', () => generatePDF());
+
+// ============================================================
+// SEND PROPOSAL — emails service@nepa-pro.com with the stack
+// + downloads PDF for the user to attach manually
+// ============================================================
+document.getElementById('sendProposalBtn').addEventListener('click', () => {
+  const f = document.getElementById('proposalForm');
+  const name = f['name'].value.trim();
+  const email = f['email'].value.trim();
+  if (!name || !email) {
+    alert('Please add at least your name and email so we know who to reply to.');
+    f['name'].focus();
+    return;
+  }
+  const phone = f['phone'].value.trim();
+  const business = f['business'].value.trim();
+  const brief = f['brief'].value.trim();
+
+  const addons = getActiveAddons();
+  const monthly = calcMonthly();
+
+  // Build email body — plain text, mailto-safe
+  let stackText = '* Base PWA - $49/mo (required)\n';
+  addons.forEach(a => {
+    stackText += '* ' + a.name + ' - $' + a.price + '/mo\n';
+  });
+
+  const bodyText =
+    'NEW PWA PROPOSAL\n' +
+    '================\n\n' +
+    'Customer: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Phone: ' + (phone || '—') + '\n' +
+    'Business: ' + (business || '—') + '\n\n' +
+    'SELECTED STACK\n' +
+    '--------------\n' +
+    stackText + '\n' +
+    'MONTHLY: $' + monthly + '\n' +
+    'ANNUAL:  $' + (monthly * 12) + '\n' +
+    'SETUP:   $0 (waived)\n\n' +
+    'PROJECT BRIEF\n' +
+    '-------------\n' +
+    (brief || '(no brief provided)') + '\n\n' +
+    '— Generated from app.nepa-pro.com';
+
+  const subject = 'New PWA Proposal from ' + name + ' ($' + monthly + '/mo)';
+  const mailto = 'mailto:service@nepa-pro.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+
+  // 1. Trigger PDF download
+  generatePDF();
+  // 2. Open mail client (small delay so PDF download initiates first)
+  setTimeout(() => {
+    window.location.href = mailto;
+  }, 600);
+});
 
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(q => {
@@ -2094,7 +2799,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
   const sheet = document.getElementById('sheet');
   const backdrop = document.getElementById('sheetBackdrop');
   const close = document.getElementById('sheetClose');
-  const opens = document.querySelectorAll('[data-open-sheet]');
   function open(){
     sheet.classList.add('open');
     backdrop.classList.add('open');
@@ -2106,7 +2810,11 @@ document.querySelectorAll('.faq-q').forEach(q => {
     backdrop.classList.remove('open');
     document.body.style.overflow = '';
   }
-  opens.forEach(b => b.addEventListener('click', e => { e.preventDefault(); open(); }));
+  // event delegation — works for both static and dynamically-tagged elements
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('[data-open-sheet]');
+    if (trigger) { e.preventDefault(); open(); }
+  });
   close.addEventListener('click', shut);
   backdrop.addEventListener('click', shut);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
@@ -2120,18 +2828,8 @@ document.querySelectorAll('.faq-q').forEach(q => {
       alert('Please add at least your name and email.');
       return;
     }
-    // gather selected stack
-    const active = Array.from(document.querySelectorAll('.sub.on'));
-    let stackText = '* Base PWA - $' + BASE_PRICE + '/mo (always required)\n';
-    let monthly = BASE_PRICE;
-    active.forEach(s => {
-      stackText += '* ' + s.dataset.name + ' - $' + s.dataset.price + '/mo\n';
-      monthly += parseInt(s.dataset.price);
-    });
-    stackText += '\nMONTHLY TOTAL: $' + monthly + '/month';
-
-    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${f['phone'].value}%0D%0ABusiness: ${f['business'].value}%0D%0A%0D%0ASELECTED STACK:%0D%0A${encodeURIComponent(stackText)}%0D%0A%0D%0ABrief:%0D%0A${encodeURIComponent(f['brief'].value)}`;
-    window.location.href = `mailto:hello@app.nepa-pro.com?subject=New%20stack%20subscription%20from%20${encodeURIComponent(name)}&body=${body}`;
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${f['phone'].value}%0D%0ABusiness: ${f['business'].value}%0D%0A%0D%0ABrief:%0D%0A${encodeURIComponent(f['brief'].value)}`;
+    window.location.href = `mailto:service@nepa-pro.com?subject=Custom%20quote%20request%20from%20${encodeURIComponent(name)}&body=${body}`;
   });
 })();
 

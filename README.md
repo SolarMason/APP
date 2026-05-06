@@ -62,7 +62,7 @@ To test PWA installability you need HTTPS — deploy to Pages, or use `ngrok htt
 ## Customizing later
 
 - All CSS/JS is inline in `index.html`. Edit one file, redeploy.
-- Form currently uses `mailto:` to `hello@app.nepa-pro.com` and includes the customer's selected stack in the email body — so you know exactly what to invoice for.
+- Form currently uses `mailto:` to `service@nepa-pro.com` and includes the customer's selected stack in the email body — so you know exactly what to invoice for.
 - When ready, swap the form submit handler to POST to a Cloudflare Worker / SuiteDash / Stripe Checkout URL on nepa-pro.com.
 - The base PWA price (`BASE_PRICE = 49`) and all add-on prices live in the cards' `data-price` attributes. Edit there.
 
@@ -74,4 +74,5 @@ To test PWA installability you need HTTPS — deploy to Pages, or use `ngrok htt
 - Aesthetic: pure black, Liquid Glass, Lock Screen vibe
 
 —
-Built in NEPA. Veteran owned and operated.
+Built in Clarks Summit, PA. Veteran owned and operated.
+**570-677-7971** · service@nepa-pro.com
