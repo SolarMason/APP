@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a84ff"/>
+      <stop offset="50%" stop-color="#5e5ce6"/>
+      <stop offset="100%" stop-color="#bf5af2"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="dotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ffe9ff"/>
+    </linearGradient>
+    <radialGradient id="dotShine" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1024" height="1024" rx="229" ry="229" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="229" ry="229" fill="url(#sheen)"/>
+
+  <g transform="translate(512, 600)">
+    <text x="-90" y="0"
+          font-family="'Inter Display', 'Inter', -apple-system, sans-serif"
+          font-weight="800"
+          font-size="380"
+          letter-spacing="-22"
+          text-anchor="middle"
+          fill="#ffffff">app</text>
+    <circle cx="160" cy="-10" r="62" fill="url(#dotGrad)"/>
+    <circle cx="160" cy="-10" r="62" fill="url(#dotShine)"/>
+  </g>
+</svg>
