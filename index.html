@@ -150,47 +150,6 @@ body::after {
 @media (min-width: 768px) { .wrap { padding: 0 40px; } }
 section { position: relative; z-index: 2; }
 
-/* status bar */
-.statusbar {
-  position: relative; z-index: 50;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: max(8px, var(--safe-top)) 28px 6px;
-  font-family: var(--font-display);
-  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
-  color: var(--text-0);
-  font-feature-settings: "tnum";
-}
-.sb-time { min-width: 60px; }
-.sb-icons { display: flex; align-items: center; gap: 6px; }
-.sb-icons svg { fill: var(--text-0); }
-@media (max-width: 480px) { .statusbar { font-size: 14px; } }
-
-/* dynamic island */
-.island-wrap { display: flex; justify-content: center; margin: 4px 0 14px; padding: 0 20px; position: relative; z-index: 49; }
-.island {
-  background: #000;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 100px;
-  padding: 10px 18px 10px 14px;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; font-weight: 500; color: var(--text-1);
-  min-width: 220px; max-width: 100%;
-  transition: all 0.6s var(--spring);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 4px 24px rgba(0,0,0,0.6);
-}
-.island-dot {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
-  flex-shrink: 0;
-  animation: pulse 2.4s var(--ease-out) infinite;
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.55); }
-  70% { box-shadow: 0 0 0 10px rgba(48, 209, 88, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
-}
-.island-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.island-text strong { color: var(--text-0); font-weight: 600; }
-
 /* nav */
 .nav {
   position: sticky; top: 0; z-index: 40;
@@ -1460,27 +1419,302 @@ footer {
 .cat-ops { --accent: var(--red); }
 .cat-prem .cat-icon, .cat-prem .sub-ico { background: var(--grad-yellow); }
 .cat-prem { --accent: var(--yellow); }
+
+/* ========================================================================
+   PWA EXPLAINER — top of page, what is a PWA, 3-step visual
+   ======================================================================== */
+.pwa-explain { padding: 60px 0 80px; }
+@media (min-width: 768px) { .pwa-explain { padding: 80px 0 100px; } }
+
+.pwa-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 56px;
+}
+@media (min-width: 880px) {
+  .pwa-flow { grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; }
+}
+
+.pwa-step {
+  background: var(--surface-1);
+  border: 0.5px solid var(--hairline-1);
+  border-radius: var(--r-2xl);
+  padding: 28px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 20px;
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.pwa-step:hover {
+  background: var(--surface-2);
+  border-color: var(--hairline-2);
+  transform: translateY(-3px);
+}
+
+.pwa-step-screen {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 9/16;
+  background: linear-gradient(145deg, #1c1c1f, #0a0a0c);
+  border-radius: 26px;
+  padding: 6px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 4px 12px rgba(94, 92, 230, 0.12);
+}
+
+.pwa-screen {
+  width: 100%; height: 100%;
+  background: linear-gradient(165deg, #0a0a0c, #141417);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Step 1: Browser */
+.pwa-screen.browser { padding: 14px 12px; }
+.pwa-browser-bar {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid var(--hairline-1);
+  border-radius: 9px;
+  padding: 7px 10px;
+  margin-bottom: 12px;
+}
+.pwa-browser-dots { display: flex; gap: 3px; }
+.pwa-browser-dots i {
+  display: block; width: 6px; height: 6px;
+  background: rgba(255,255,255,0.25); border-radius: 50%;
+}
+.pwa-url {
+  font-size: 9px; color: var(--text-2);
+  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+.pwa-browser-content { padding: 4px 0; }
+.pwa-browser-card {
+  height: 60px;
+  background: var(--grad-hero);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+.pwa-browser-line {
+  height: 6px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+.pwa-browser-line.short { width: 60%; }
+
+/* Step 2: Share sheet prompt */
+.pwa-screen.prompt { display: flex; align-items: flex-end; padding: 14px 10px; background: linear-gradient(160deg, #0a0a0c 0%, #141417 50%, rgba(94,92,230,0.15) 100%); }
+.pwa-share-sheet {
+  width: 100%;
+  background: rgba(28, 28, 31, 0.95);
+  backdrop-filter: blur(20px);
+  border: 0.5px solid var(--hairline-2);
+  border-radius: 14px;
+  padding: 6px 6px 10px;
+}
+.pwa-share-handle {
+  width: 28px; height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 100px;
+  margin: 4px auto 8px;
+}
+.pwa-share-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+  font-size: 10px;
+  color: var(--text-1);
+  border-radius: 6px;
+}
+.pwa-share-row.dim { color: var(--text-3); }
+.pwa-share-row.highlight {
+  background: linear-gradient(135deg, rgba(10,132,255,0.25), rgba(94,92,230,0.20));
+  color: var(--text-0);
+  font-weight: 600;
+  position: relative;
+  box-shadow: 0 0 0 0.5px var(--blue) inset, 0 0 16px rgba(10,132,255,0.3);
+}
+.pwa-share-ico {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  display: grid; place-items: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.pwa-share-ico-app {
+  width: 18px; height: 18px;
+  border-radius: 5px;
+  background: var(--grad-hero);
+  display: grid; place-items: center;
+  font-size: 9px; font-weight: 800; color: white;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+}
+.pwa-share-arrow { margin-left: auto; color: var(--text-2); font-weight: 600; }
+
+/* Step 3: Home screen */
+.pwa-screen.homescreen {
+  background: linear-gradient(160deg, #1a0a40 0%, #0a1a3a 50%, #2a0a3a 100%);
+  padding: 16px 12px;
+  display: flex; align-items: flex-start; justify-content: center;
+}
+.pwa-home-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 8px;
+  width: 100%;
+}
+.pwa-home-tile {
+  aspect-ratio: 1;
+  border-radius: 9px;
+  box-shadow: 0 0 0 0.5px rgba(255,255,255,0.08) inset, 0 2px 6px rgba(0,0,0,0.3);
+}
+.pwa-home-tile.new {
+  background: var(--grad-hero);
+  display: grid; place-items: center;
+  color: white; font-family: var(--font-display);
+  font-weight: 800; font-size: 14px;
+  letter-spacing: -0.05em;
+  position: relative;
+  animation: tileBounce 2.4s var(--spring) infinite;
+}
+.pwa-home-tile.new::after {
+  content: "";
+  position: absolute; inset: -3px;
+  border-radius: 11px;
+  border: 1.5px solid rgba(10,132,255,0.6);
+  animation: tilePulse 2.4s ease-out infinite;
+}
+@keyframes tileBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes tilePulse {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+.pwa-step-meta { width: 100%; }
+.pwa-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--grad-hero);
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; color: white;
+  margin: 0 auto 10px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 2px 8px rgba(94,92,230,0.4);
+}
+.pwa-step-meta h4 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.pwa-step-meta p {
+  font-size: 14px; color: var(--text-2);
+  line-height: 1.5;
+}
+
+.pwa-arrow {
+  display: grid; place-items: center;
+  color: var(--text-3);
+}
+.pwa-arrow svg {
+  width: 28px; height: 28px;
+  transform: rotate(90deg);
+}
+@media (min-width: 880px) {
+  .pwa-arrow svg { transform: rotate(0); }
+}
+
+/* Benefit pills */
+.pwa-pills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.pwa-pill {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface-1);
+  border: 0.5px solid var(--hairline-1);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: all 0.25s var(--ease);
+}
+.pwa-pill:hover {
+  background: var(--surface-2);
+  border-color: var(--hairline-2);
+  transform: translateY(-2px);
+}
+.pwa-pill-ico {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0.5px rgba(255,255,255,0.1) inset, 0 2px 8px rgba(0,0,0,0.3);
+}
+.pwa-pill-ico svg { width: 18px; height: 18px; }
+.pwa-pill strong {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--text-0);
+  display: block;
+}
+.pwa-pill small {
+  font-size: 12px; color: var(--text-2);
+  display: block; margin-top: 1px;
+}
+
+/* ========================================================================
+   reusable Subscribe CTA — used throughout the page
+   ======================================================================== */
+.subscribe-cta {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center;
+  padding: 12px 0;
+}
+.subscribe-btn {
+  min-width: 200px;
+  padding: 16px 40px;
+}
+.subscribe-cta-meta {
+  font-size: 13px; color: var(--text-3);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* compact inline subscribe section between page sections */
+.subscribe-strip {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, rgba(10,132,255,0.07), rgba(94,92,230,0.05));
+  border: 0.5px solid var(--hairline-2);
+  border-radius: var(--r-2xl);
+  text-align: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.subscribe-strip h3 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 600; letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
 </style>
 </head>
 <body>
-
-<!-- STATUS BAR -->
-<div class="statusbar" aria-hidden="true">
-  <div class="sb-time" id="sbTime">9:41</div>
-  <div class="sb-icons">
-    <svg width="18" height="11" viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="0.5"/><rect x="5" y="5" width="3" height="6" rx="0.5"/><rect x="10" y="2.5" width="3" height="8.5" rx="0.5"/><rect x="15" y="0" width="3" height="11" rx="0.5"/></svg>
-    <svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 3.5a4.5 4.5 0 0 1 3.18 1.32l1.06-1.06A6 6 0 0 0 8 2a6 6 0 0 0-4.24 1.76l1.06 1.06A4.5 4.5 0 0 1 8 3.5zM8 0a9.5 9.5 0 0 0-6.72 2.78l1.06 1.06a8 8 0 0 1 11.32 0l1.06-1.06A9.5 9.5 0 0 0 8 0zm0 7a2 2 0 0 0-1.41.59L8 9l1.41-1.41A2 2 0 0 0 8 7z"/></svg>
-    <svg width="26" height="11" viewBox="0 0 26 11"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" fill="none" stroke="white" stroke-opacity="0.4"/><rect x="2" y="2" width="19" height="7" rx="1.2" fill="white"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="white" fill-opacity="0.5"/></svg>
-  </div>
-</div>
-
-<!-- DYNAMIC ISLAND -->
-<div class="island-wrap">
-  <div class="island" id="island">
-    <span class="island-dot"></span>
-    <span class="island-text" id="islandText"><strong>app.</strong> &mdash; from $49/month, setup waived</span>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -1493,7 +1727,7 @@ footer {
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
-    <button class="nav-cta" data-open-sheet>Start building</button>
+    <a class="nav-cta" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
   </div>
 </nav>
 
@@ -1507,11 +1741,11 @@ footer {
     <h1 class="reveal">app<span class="dot" aria-hidden="true"></span></h1>
     <p class="hero-tag reveal">We build your app. <span class="muted">You run your business.</span></p>
     <p class="hero-sub reveal">
-      A custom PWA, hosted and managed by us. From <strong style="color:var(--text-0)">$49/month</strong>. Setup waived. Installable on iPhone, Android, and desktop &mdash; without the App Store.
+      A custom PWA, hosted and managed by us. Installable on iPhone, Android, and desktop &mdash; without the App Store.
     </p>
     <div class="hero-cta reveal">
-      <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
-      <a href="#why" class="btn btn-secondary">Why PWA beats native</a>
+      <a href="#pwa-intro" class="btn btn-primary">What's a PWA?</a>
+      <a href="#why" class="btn btn-secondary">vs. App Store</a>
     </div>
 
     <div class="device-stage reveal" aria-hidden="true">
@@ -1535,6 +1769,124 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S A PWA? — clear explainer at top of page -->
+<section class="pwa-explain section-pad" id="pwa-intro">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="t-eyebrow">what's a pwa?</span>
+      <h2>A website that <span class="gradient-text">installs like an app.</span></h2>
+      <p>No App Store. No download. Tap &ldquo;Save to Home Screen&rdquo; once and your business gets its own app icon, full-screen experience, push notifications, and offline access. Same as Instagram. Same as Twitter. Better than the App Store, on every device.</p>
+    </div>
+
+    <div class="pwa-flow reveal">
+      <div class="pwa-step">
+        <div class="pwa-step-screen">
+          <div class="pwa-screen browser">
+            <div class="pwa-browser-bar">
+              <span class="pwa-browser-dots"><i></i><i></i><i></i></span>
+              <span class="pwa-url">yourbusiness.app</span>
+            </div>
+            <div class="pwa-browser-content">
+              <div class="pwa-browser-card"></div>
+              <div class="pwa-browser-line"></div>
+              <div class="pwa-browser-line short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pwa-step-meta">
+          <div class="pwa-step-num">1</div>
+          <h4>Open your link</h4>
+          <p>Customer taps a link &mdash; from your site, an email, an SMS, or a QR code. Any browser works.</p>
+        </div>
+      </div>
+
+      <div class="pwa-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+
+      <div class="pwa-step">
+        <div class="pwa-step-screen">
+          <div class="pwa-screen prompt">
+            <div class="pwa-share-sheet">
+              <div class="pwa-share-handle"></div>
+              <div class="pwa-share-row dim"><span class="pwa-share-ico">&#x21AA;</span>Copy</div>
+              <div class="pwa-share-row dim"><span class="pwa-share-ico">&#x2606;</span>Bookmark</div>
+              <div class="pwa-share-row highlight">
+                <span class="pwa-share-ico-app">a.</span>
+                Add to Home Screen
+                <span class="pwa-share-arrow">&#8250;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pwa-step-meta">
+          <div class="pwa-step-num">2</div>
+          <h4>Tap &ldquo;Add to Home Screen&rdquo;</h4>
+          <p>One tap, two seconds. No App Store, no developer fees, no waiting for review.</p>
+        </div>
+      </div>
+
+      <div class="pwa-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+
+      <div class="pwa-step">
+        <div class="pwa-step-screen">
+          <div class="pwa-screen homescreen">
+            <div class="pwa-home-grid">
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#ff375f,#ff9f0a)"></div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#30d158,#64d2ff)"></div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#ffd60a,#ff9f0a)"></div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#bf5af2,#5e5ce6)"></div>
+              <div class="pwa-home-tile new">a.</div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)"></div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#64d2ff,#5ac8fa)"></div>
+              <div class="pwa-home-tile" style="background:linear-gradient(135deg,#ff9f0a,#ff453a)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pwa-step-meta">
+          <div class="pwa-step-num">3</div>
+          <h4>Done &mdash; it&rsquo;s an app</h4>
+          <p>Your icon sits next to Instagram. Full-screen, offline, push-ready. Identical experience.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pwa-pills reveal">
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-blue)"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93A8 8 0 0 1 4 12c0-.61.07-1.21.18-1.79L9 15v1a2 2 0 0 0 2 2v1.93zm6.9-2.54A2 2 0 0 0 16 16h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41A8.01 8.01 0 0 1 17.9 17.39z"/></svg></div>
+        <div><strong>Web-installable</strong><small>From any browser link</small></div>
+      </div>
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-green)"><svg viewBox="0 0 24 24" fill="white"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+        <div><strong>2-second install</strong><small>No App Store needed</small></div>
+      </div>
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-purple)"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18L19.82 8 12 11.82 4.18 8 12 4.18zM4 15.5V9.06l7 3.5v6.94l-7-3.5zm9 3.94v-6.94l7-3.5v6.44l-7 3.5z"/></svg></div>
+        <div><strong>Works offline</strong><small>Local storage built-in</small></div>
+      </div>
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-orange)"><svg viewBox="0 0 24 24" fill="white"><path d="M17.65 6.35A8 8 0 1 0 19.73 14h-2.08a6 6 0 1 1-1.51-6.24L13 11h7V4l-2.35 2.35z"/></svg></div>
+        <div><strong>Updates instantly</strong><small>No review delays</small></div>
+      </div>
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-pink)"><svg viewBox="0 0 24 24" fill="white"><path d="M21 6h-2V4c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v2H3c-1.1 0-2 .9-2 2v3a4 4 0 0 0 4 4h.22A6 6 0 0 0 11 19.91V22h2v-2.09A6 6 0 0 0 18.78 15H19a4 4 0 0 0 4-4V8c0-1.1-.9-2-2-2zM5 13a2 2 0 0 1-2-2V8h2v3a4 4 0 0 0 .15 1H5zm16-2a2 2 0 0 1-2 2h-.15A4 4 0 0 0 19 11V8h2v3z"/></svg></div>
+        <div><strong>Every device</strong><small>iPhone, Android, desktop</small></div>
+      </div>
+      <div class="pwa-pill">
+        <div class="pwa-pill-ico" style="background:var(--grad-yellow)"><svg viewBox="0 0 24 24" fill="white"><path d="M12 1a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v11h16V9a2 2 0 0 0-2-2h-2V5a4 4 0 0 0-4-4zm0 2a2 2 0 0 1 2 2v2h-4V5a2 2 0 0 1 2-2zm-1 8h2v2.27a2 2 0 1 1-2 0V11z"/></svg></div>
+        <div><strong>0% platform fees</strong><small>Keep every dollar</small></div>
+      </div>
+    </div>
+
+    <div class="subscribe-cta reveal">
+      <a class="btn btn-primary subscribe-btn" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
+      <span class="subscribe-cta-meta">$49/month &middot; Setup waived &middot; Cancel anytime</span>
     </div>
   </div>
 </section>
@@ -1599,6 +1951,11 @@ footer {
     <p style="text-align:center;color:var(--text-3);margin-top:24px;font-size:13px;font-style:italic">
       Starbucks, Twitter (X), Pinterest, Uber, BMW, and Spotify all run as PWAs. You can too.
     </p>
+
+    <div class="subscribe-cta reveal" style="margin-top:40px">
+      <a class="btn btn-primary subscribe-btn" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
+      <span class="subscribe-cta-meta">$49/month &middot; Setup waived &middot; Cancel anytime</span>
+    </div>
   </div>
 </section>
 
@@ -1627,6 +1984,11 @@ footer {
         <p>Share your URL. Customers tap "Save to Home Screen." Your app sits next to Instagram &mdash; same icon, same launch, same feel. Works offline. No App Store.</p>
       </div>
     </div>
+
+    <div class="subscribe-cta reveal" style="margin-top:48px">
+      <a class="btn btn-primary subscribe-btn" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
+      <span class="subscribe-cta-meta">$49/month &middot; Live PWA in 5 days</span>
+    </div>
   </div>
 </section>
 
@@ -1653,6 +2015,11 @@ footer {
         <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#0a84ff,#64d2ff)">S</div><span class="app-name">Site</span></div>
         <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)">B</div><span class="app-name">Brief</span></div>
       </div>
+    </div>
+
+    <div class="subscribe-cta reveal" style="margin-top:40px">
+      <a class="btn btn-primary subscribe-btn" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
+      <span class="subscribe-cta-meta">$49/month &middot; Yours could be next</span>
     </div>
   </div>
 </section>
@@ -1685,7 +2052,7 @@ footer {
         <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subdomain: yours.app.nepa-pro.com</li>
         <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>5-day delivery, free updates</li>
       </ul>
-      <a class="btn btn-primary" data-stripe="base" target="_blank" rel="noopener" style="width:100%">Subscribe to Base PWA &mdash; $49/mo</a>
+      <a class="btn btn-primary" data-stripe="base" target="_blank" rel="noopener" style="width:100%">Subscribe</a>
     </div>
 
     <!-- CATALOG HEAD -->
@@ -2256,11 +2623,11 @@ footer {
       <h2>Your app. <span class="gradient-text">Ready in 5 days.</span></h2>
       <p>Pick your stack. We build it. Your customers install it. From $49/month. Setup waived. Cancel anytime.</p>
       <div class="hero-cta" style="justify-content:center">
-        <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
+        <a class="btn btn-primary subscribe-btn" data-stripe="base" target="_blank" rel="noopener">Subscribe</a>
         <a href="tel:+15706777971" class="btn btn-secondary">Call 570-677-7971</a>
       </div>
       <p style="position:relative;font-size:13px;color:var(--text-3);margin-top:18px">
-        Or email <a href="mailto:service@nepa-pro.com" style="color:var(--text-1);border-bottom:1px solid var(--hairline-2)">service@nepa-pro.com</a> &middot; Clarks Summit, PA
+        $49/month &middot; Setup waived &middot; Cancel anytime &middot; <a href="mailto:service@nepa-pro.com" style="color:var(--text-1);border-bottom:1px solid var(--hairline-2)">service@nepa-pro.com</a>
       </p>
     </div>
   </div>
@@ -2471,47 +2838,6 @@ footer {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-// status bar live time
-(function tickClock(){
-  const el = document.getElementById('sbTime');
-  function update(){
-    const d = new Date();
-    let h = d.getHours();
-    const m = String(d.getMinutes()).padStart(2,'0');
-    h = h % 12 || 12;
-    el.textContent = h + ':' + m;
-  }
-  update(); setInterval(update, 30000);
-})();
-
-// dynamic island ticker
-(function islandTicker(){
-  const el = document.getElementById('islandText');
-  const messages = [
-    '<strong>app.</strong> &mdash; from $49/mo, setup waived',
-    '<strong>0%</strong> App Store / Play Store cut',
-    '<strong>5 days</strong> &mdash; signup to live PWA',
-    '<strong>iPhone, Android, desktop</strong> &mdash; one app',
-    '<strong>Cancel anytime.</strong> No lock-in.',
-    '<strong>Works offline.</strong> Local storage.'
-  ];
-  let i = 0;
-  setInterval(() => {
-    i = (i + 1) % messages.length;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(-4px)';
-    el.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
-    setTimeout(() => {
-      el.innerHTML = messages[i];
-      el.style.transform = 'translateY(4px)';
-      requestAnimationFrame(() => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-    }, 250);
-  }, 4500);
-})();
-
 // ============================================================
 // STRIPE PAYMENT LINKS
 // ============================================================
@@ -2572,7 +2898,7 @@ const STRIPE_LINKS = {
   priority:     'https://buy.stripe.com/REPLACE_WITH_PRIORITY_LINK'
 };
 
-// Wire base PWA card button to the real Stripe Payment Link
+// Wire ALL base PWA Subscribe buttons across the page
 function wireSubscribe(el, link) {
   if (!el) return;
   if (link && !link.includes('REPLACE_WITH')) {
@@ -2585,7 +2911,9 @@ function wireSubscribe(el, link) {
     el.style.cursor = 'pointer';
   }
 }
-wireSubscribe(document.querySelector('[data-stripe="base"]'), STRIPE_LINKS.base);
+document.querySelectorAll('[data-stripe="base"]').forEach(btn => {
+  wireSubscribe(btn, STRIPE_LINKS.base);
+});
 
 // ============================================================
 // LIVE QUOTE — toggle add-ons, watch the total update
