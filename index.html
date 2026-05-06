@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="app. — We build your app. From $49. PWA, iOS, Android — installable on every device. Designed and built for you in days, not months.">
+<meta name="description" content="app. — A custom PWA for your business. From $49/month. Setup waived. Installable on iPhone, Android, and desktop — without the App Store.">
 
 <!-- Apple PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -22,9 +22,9 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
 
 <!-- Open Graph -->
-<title>app. — We build your app. From $49.</title>
-<meta property="og:title" content="app. — We build your app. From $49.">
-<meta property="og:description" content="An installable app, designed and built for you in days. iPhone, Android, web — one app, everywhere.">
+<title>app. — Custom PWA for your business. From $49/month.</title>
+<meta property="og:title" content="app. — Custom PWA for your business. From $49/month.">
+<meta property="og:description" content="A custom PWA — installable on iPhone, Android, and desktop. We build, host, and run it. Setup waived. Better than the App Store.">
 <meta property="og:image" content="https://app.nepa-pro.com/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -34,8 +34,8 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="app. — We build your app. From $49.">
-<meta name="twitter:description" content="An installable app, designed and built for you in days. iPhone, Android, web — one app, everywhere.">
+<meta name="twitter:title" content="app. — Custom PWA for your business. From $49/month.">
+<meta name="twitter:description" content="A custom PWA — installable on iPhone, Android, and desktop. Setup waived. Better than the App Store.">
 <meta name="twitter:image" content="https://app.nepa-pro.com/og-card.png">
 
 <style>
@@ -78,6 +78,10 @@
   --grad-pink: linear-gradient(135deg, #ff375f, #ff9f0a);
   --grad-green: linear-gradient(135deg, #30d158, #64d2ff);
   --grad-purple: linear-gradient(135deg, #bf5af2, #5e5ce6);
+  --grad-orange: linear-gradient(135deg, #ff9f0a, #ff453a);
+  --grad-red: linear-gradient(135deg, #ff453a, #ff375f);
+  --grad-yellow: linear-gradient(135deg, #ffd60a, #ff9f0a);
+  --grad-mint: linear-gradient(135deg, #66d4cf, #30d158);
 
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
   --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
@@ -99,10 +103,7 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* reset */
-*,
-*::before,
-*::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   font-family: var(--font-text);
@@ -119,173 +120,67 @@ body {
 img, svg { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
-input, textarea, select {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
-  outline: 0;
-  width: 100%;
-}
+input, textarea, select { font: inherit; color: inherit; background: none; border: 0; outline: 0; width: 100%; }
 ::selection { background: rgba(10, 132, 255, 0.4); color: white; }
 
-/* ==========================================================================
-   ambient background
-   ========================================================================== */
+/* ambient bg */
 body::before {
   content: "";
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
     radial-gradient(ellipse 80% 60% at 15% 0%, rgba(94, 92, 230, 0.18), transparent 60%),
     radial-gradient(ellipse 60% 50% at 85% 30%, rgba(10, 132, 255, 0.14), transparent 60%),
     radial-gradient(ellipse 70% 50% at 50% 100%, rgba(191, 90, 242, 0.10), transparent 60%);
-  pointer-events: none;
-  z-index: 0;
 }
 body::after {
   content: "";
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.5; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 1;
 }
 
-/* ==========================================================================
-   typography
-   ========================================================================== */
-.t-eyebrow {
-  font-family: var(--font-text);
-  font-size: 13px;
-  font-weight: 590;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-2);
-}
-.t-display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.95;
-}
-.t-headline {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-}
-.t-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-.t-body {
-  font-family: var(--font-text);
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.55;
-  color: var(--text-1);
-}
-.t-caption {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-2);
-}
-.t-mono {
-  font-family: var(--font-mono);
-  font-feature-settings: "tnum";
-}
-
+.t-eyebrow { font-size: 13px; font-weight: 590; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); }
 .gradient-text {
   background: var(--grad-hero);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
 
-/* ==========================================================================
-   layout
-   ========================================================================== */
-.wrap {
-  position: relative;
-  z-index: 2;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-@media (min-width: 768px) {
-  .wrap { padding: 0 40px; }
-}
-
+.wrap { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 768px) { .wrap { padding: 0 40px; } }
 section { position: relative; z-index: 2; }
 
-/* ==========================================================================
-   status bar mockup (top)
-   ========================================================================== */
+/* status bar */
 .statusbar {
-  position: relative;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
   padding: max(8px, var(--safe-top)) 28px 6px;
   font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
   color: var(--text-0);
   font-feature-settings: "tnum";
 }
 .sb-time { min-width: 60px; }
-.sb-icons {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+.sb-icons { display: flex; align-items: center; gap: 6px; }
 .sb-icons svg { fill: var(--text-0); }
-@media (max-width: 480px) {
-  .statusbar { font-size: 14px; }
-}
+@media (max-width: 480px) { .statusbar { font-size: 14px; } }
 
-/* ==========================================================================
-   dynamic island
-   ========================================================================== */
-.island-wrap {
-  display: flex;
-  justify-content: center;
-  margin: 4px 0 14px;
-  padding: 0 20px;
-  position: relative;
-  z-index: 49;
-}
+/* dynamic island */
+.island-wrap { display: flex; justify-content: center; margin: 4px 0 14px; padding: 0 20px; position: relative; z-index: 49; }
 .island {
   background: #000;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 100px;
   padding: 10px 18px 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-1);
-  min-width: 200px;
-  max-width: 100%;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500; color: var(--text-1);
+  min-width: 220px; max-width: 100%;
   transition: all 0.6s var(--spring);
   box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 4px 24px rgba(0,0,0,0.6);
 }
 .island-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
   flex-shrink: 0;
-  box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.7);
   animation: pulse 2.4s var(--ease-out) infinite;
 }
 @keyframes pulse {
@@ -293,145 +188,81 @@ section { position: relative; z-index: 2; }
   70% { box-shadow: 0 0 0 10px rgba(48, 209, 88, 0); }
   100% { box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
 }
-.island-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.island-text strong {
-  color: var(--text-0);
-  font-weight: 600;
-}
+.island-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.island-text strong { color: var(--text-0); font-weight: 600; }
 
-/* ==========================================================================
-   top nav
-   ========================================================================== */
+/* nav */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 40;
+  position: sticky; top: 0; z-index: 40;
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   background: rgba(0, 0, 0, 0.65);
   border-bottom: 0.5px solid var(--hairline-1);
 }
 .nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;
-  padding: 0 20px;
-  max-width: 1240px;
-  margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; padding: 0 20px;
+  max-width: 1240px; margin: 0 auto;
 }
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -0.04em;
+  font-weight: 700; font-size: 22px; letter-spacing: -0.04em;
   color: var(--text-0);
 }
 .brand-mark {
-  width: 30px;
-  height: 30px;
+  width: 30px; height: 30px;
   border-radius: var(--r-icon);
   background: var(--grad-hero);
-  display: grid;
-  place-items: center;
-  font-size: 16px;
-  font-weight: 800;
-  color: white;
+  display: grid; place-items: center;
+  font-size: 16px; font-weight: 800; color: white;
   letter-spacing: -0.05em;
   box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 4px 12px rgba(94, 92, 230, 0.35);
 }
-.nav-links {
-  display: none;
-  gap: 4px;
-  align-items: center;
-}
-@media (min-width: 768px) {
-  .nav-links { display: flex; }
-}
+.nav-links { display: none; gap: 4px; align-items: center; }
+@media (min-width: 768px) { .nav-links { display: flex; } }
 .nav-link {
-  padding: 8px 14px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-1);
+  padding: 8px 14px; border-radius: 100px;
+  font-size: 14px; font-weight: 500; color: var(--text-1);
   transition: all 0.2s var(--ease);
 }
-.nav-link:hover {
-  background: var(--surface-2);
-  color: var(--text-0);
-}
+.nav-link:hover { background: var(--surface-2); color: var(--text-0); }
 .nav-cta {
-  background: var(--text-0);
-  color: var(--bg-0);
-  padding: 9px 16px;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  background: var(--text-0); color: var(--bg-0);
+  padding: 9px 16px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
   transition: all 0.2s var(--ease);
 }
 .nav-cta:hover { transform: scale(0.97); }
 
-/* ==========================================================================
-   hero
-   ========================================================================== */
-.hero {
-  padding: 60px 0 80px;
-  text-align: center;
-  position: relative;
-}
-@media (min-width: 768px) {
-  .hero { padding: 100px 0 120px; }
-}
+/* hero */
+.hero { padding: 60px 0 80px; text-align: center; position: relative; }
+@media (min-width: 768px) { .hero { padding: 100px 0 120px; } }
 .hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-2);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 6px 14px 6px 8px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-1);
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface-2); border: 0.5px solid var(--hairline-2);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  padding: 6px 14px 6px 8px; border-radius: 100px;
+  font-size: 13px; font-weight: 500; color: var(--text-1);
   margin-bottom: 28px;
 }
 .hero-eyebrow-badge {
-  background: var(--grad-blue);
-  color: white;
-  padding: 2px 10px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  background: var(--grad-blue); color: white;
+  padding: 2px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
 }
 .hero h1 {
   font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.85;
+  font-weight: 800; letter-spacing: -0.06em; line-height: 0.85;
   font-size: clamp(96px, 28vw, 280px);
   margin-bottom: 20px;
 }
 .hero h1 .dot {
   display: inline-block;
-  width: 0.55em;
-  height: 0.55em;
-  background: var(--grad-hero);
-  border-radius: 50%;
+  width: 0.55em; height: 0.55em;
+  background: var(--grad-hero); border-radius: 50%;
   margin-left: -0.05em;
-  vertical-align: baseline;
-  position: relative;
-  bottom: -0.02em;
+  vertical-align: baseline; position: relative; bottom: -0.02em;
   box-shadow: 0 0 80px rgba(94, 92, 230, 0.6), 0 0 40px rgba(10, 132, 255, 0.5);
   animation: dotglow 4s var(--ease-out) infinite;
 }
@@ -442,73 +273,43 @@ section { position: relative; z-index: 2; }
 .hero-tag {
   font-family: var(--font-display);
   font-size: clamp(22px, 4vw, 32px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-  color: var(--text-0);
-  max-width: 720px;
-  margin: 0 auto 16px;
+  font-weight: 600; letter-spacing: -0.025em; line-height: 1.2;
+  color: var(--text-0); max-width: 780px; margin: 0 auto 16px;
 }
 .hero-tag .muted { color: var(--text-2); }
 .hero-sub {
-  font-size: 17px;
-  color: var(--text-2);
-  max-width: 540px;
-  margin: 0 auto 36px;
+  font-size: 17px; color: var(--text-2);
+  max-width: 600px; margin: 0 auto 36px;
 }
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 56px;
-}
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 56px; }
+
 .btn {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px 28px;
-  border-radius: 100px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px 28px; border-radius: 100px;
+  font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
   transition: all 0.25s var(--ease);
-  cursor: pointer;
-  white-space: nowrap;
+  cursor: pointer; white-space: nowrap;
 }
 .btn-primary {
-  background: var(--grad-blue);
-  color: white;
+  background: var(--grad-blue); color: white;
   box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 8px 32px rgba(10, 132, 255, 0.35);
 }
 .btn-primary:hover { transform: scale(0.97); filter: brightness(1.1); }
 .btn-secondary {
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-2);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--surface-2); border: 0.5px solid var(--hairline-2);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   color: var(--text-0);
 }
 .btn-secondary:hover { background: var(--surface-3); transform: scale(0.97); }
 .btn:active { transform: scale(0.94); }
 
-/* device mockup */
-.device-stage {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  perspective: 2400px;
-}
+/* phone mockup */
+.device-stage { position: relative; display: flex; justify-content: center; margin-top: 20px; perspective: 2400px; }
 .phone {
-  width: 280px;
-  aspect-ratio: 9/19.5;
+  width: 280px; aspect-ratio: 9/19.5;
   background: linear-gradient(145deg, #1c1c1f, #0a0a0c);
-  border-radius: 48px;
-  padding: 8px;
-  position: relative;
+  border-radius: 48px; padding: 8px; position: relative;
   box-shadow:
     0 0 0 2px rgba(255,255,255,0.06),
     0 0 0 12px rgba(255,255,255,0.02),
@@ -522,171 +323,182 @@ section { position: relative; z-index: 2; }
   50% { transform: rotateX(6deg) rotateY(-4deg) translateY(-10px); }
 }
 .phone-screen {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   background: linear-gradient(160deg, #0a0a0c 0%, #141417 50%, #1c1c1f 100%);
-  border-radius: 40px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  border-radius: 40px; overflow: hidden; position: relative;
+  display: flex; flex-direction: column;
 }
 .phone-notch {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 28px;
-  background: #000;
-  border-radius: 100px;
-  z-index: 5;
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 28px; background: #000;
+  border-radius: 100px; z-index: 5;
 }
 .phone-statusbar {
-  display: flex;
-  justify-content: space-between;
+  display: flex; justify-content: space-between;
   padding: 18px 28px 0;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 13px; font-weight: 600;
   font-family: var(--font-display);
 }
 .phone-content {
-  padding: 60px 18px 18px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  padding: 60px 18px 18px; flex: 1;
+  display: flex; flex-direction: column; gap: 12px;
 }
 .phone-card {
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-2);
-  border-radius: 18px;
-  padding: 14px;
-  font-size: 12px;
-  color: var(--text-1);
+  background: var(--surface-2); border: 0.5px solid var(--hairline-2);
+  border-radius: 18px; padding: 14px;
+  font-size: 12px; color: var(--text-1);
   backdrop-filter: blur(10px);
 }
 .phone-card strong { display: block; font-size: 13px; font-weight: 600; color: var(--text-0); margin-bottom: 4px; }
-.phone-card.accent {
-  background: var(--grad-blue);
-  color: white;
-  border: 0;
-}
+.phone-card.accent { background: var(--grad-blue); color: white; border: 0; }
 .phone-card.accent strong { color: white; }
-.phone-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 10px 4px 0;
-}
+.phone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 10px 4px 0; }
 .phone-icon {
-  aspect-ratio: 1;
-  border-radius: 22.37%;
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-  font-weight: 700;
-  color: white;
+  aspect-ratio: 1; border-radius: 22.37%;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 700; color: white;
   letter-spacing: -0.03em;
 }
+@media (max-width: 600px) { .phone { width: 230px; transform: rotateX(6deg) rotateY(-4deg); } }
 
-@media (max-width: 600px) {
-  .phone { width: 230px; transform: rotateX(6deg) rotateY(-4deg); }
-}
-
-/* ==========================================================================
-   stats strip
-   ========================================================================== */
-.stats {
-  padding: 0 0 60px;
-}
+/* stats */
+.stats { padding: 0 0 60px; }
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-  background: var(--surface-1);
-  border: 0.5px solid var(--hairline-1);
+  background: var(--surface-1); border: 0.5px solid var(--hairline-1);
   border-radius: var(--r-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   padding: 28px;
 }
 .stat { text-align: left; }
 .stat-num {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1;
   background: var(--grad-hero);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 6px;
   font-feature-settings: "tnum";
 }
-.stat-label {
-  font-size: 13px;
-  color: var(--text-2);
-  font-weight: 500;
-}
+.stat-label { font-size: 13px; color: var(--text-2); font-weight: 500; }
 
-/* ==========================================================================
-   how it works
-   ========================================================================== */
+/* shared section heads */
 .section-pad { padding: 80px 0; }
-.section-head {
-  text-align: center;
-  margin-bottom: 56px;
-}
+.section-head { text-align: center; margin-bottom: 56px; }
 .section-head .t-eyebrow { margin-bottom: 16px; display: block; }
 .section-head h2 {
   font-family: var(--font-display);
   font-size: clamp(36px, 6vw, 56px);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-  max-width: 800px;
-  margin: 0 auto 16px;
+  font-weight: 700; letter-spacing: -0.035em; line-height: 1.05;
+  max-width: 800px; margin: 0 auto 16px;
 }
-.section-head p {
-  font-size: 19px;
+.section-head p { font-size: 19px; color: var(--text-2); max-width: 580px; margin: 0 auto; }
+
+/* ========================================================================
+   WHY PWA — comparison cards
+   ======================================================================== */
+.vs-grid {
+  display: grid; gap: 20px;
+  grid-template-columns: 1fr;
+  position: relative;
+}
+@media (min-width: 880px) {
+  .vs-grid { grid-template-columns: 1fr 1fr; }
+}
+.vs-card {
+  background: var(--surface-1); border: 0.5px solid var(--hairline-1);
+  border-radius: var(--r-2xl);
+  padding: 32px 28px;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  position: relative; overflow: hidden;
+}
+.vs-card.win {
+  background: linear-gradient(165deg, rgba(10, 132, 255, 0.1), rgba(94, 92, 230, 0.08));
+  border-color: var(--hairline-3);
+  box-shadow: 0 0 60px rgba(94, 92, 230, 0.15);
+}
+.vs-card-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+}
+.vs-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  display: grid; place-items: center;
+  background: var(--surface-3);
   color: var(--text-2);
-  max-width: 580px;
-  margin: 0 auto;
+  font-size: 22px; font-weight: 700;
+}
+.vs-card.win .vs-card-icon { background: var(--grad-hero); color: white; }
+.vs-card-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; letter-spacing: -0.025em;
+  color: var(--text-2);
+}
+.vs-card.win .vs-card-title { color: var(--text-0); }
+.vs-card-sub {
+  font-size: 13px; color: var(--text-3);
+  letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+  margin-bottom: 6px;
+}
+.vs-card.win .vs-card-sub { color: var(--blue); }
+.vs-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.vs-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 15px; line-height: 1.4;
+  color: var(--text-1);
+}
+.vs-list li.bad { color: var(--text-2); }
+.vs-list svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 0; }
+.vs-list .ico-cross { fill: rgba(255, 69, 58, 0.15); stroke: var(--red); }
+.vs-list .ico-check { fill: rgba(48, 209, 88, 0.15); stroke: var(--green); }
+
+.vs-divider {
+  position: relative;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin: 8px 0;
+}
+@media (min-width: 880px) {
+  .vs-divider {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 56px; height: 56px;
+    background: var(--bg-0); border: 0.5px solid var(--hairline-2);
+    border-radius: 50%;
+    margin: 0;
+  }
 }
 
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-}
+/* ========================================================================
+   how it works
+   ======================================================================== */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .step {
-  background: var(--surface-1);
-  border: 0.5px solid var(--hairline-1);
+  background: var(--surface-1); border: 0.5px solid var(--hairline-1);
   border-radius: var(--r-card);
   padding: 28px;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
   transition: all 0.4s var(--ease-out);
 }
 .step:hover {
-  background: var(--surface-2);
-  border-color: var(--hairline-2);
+  background: var(--surface-2); border-color: var(--hairline-2);
   transform: translateY(-4px);
 }
 .step-num {
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   border-radius: var(--r-md);
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-2);
-  display: grid;
-  place-items: center;
+  background: var(--surface-2); border: 0.5px solid var(--hairline-2);
+  display: grid; place-items: center;
   font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-0);
+  font-size: 18px; font-weight: 700; color: var(--text-0);
   margin-bottom: 24px;
   font-feature-settings: "tnum";
 }
@@ -695,34 +507,26 @@ section { position: relative; z-index: 2; }
 .step:nth-child(3) .step-num { background: var(--grad-green); border-color: transparent; }
 .step h3 {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
   margin-bottom: 10px;
 }
 .step p { font-size: 15px; color: var(--text-2); line-height: 1.55; }
 
-/* ==========================================================================
-   showcase / springboard
-   ========================================================================== */
-.showcase {
-  background: linear-gradient(180deg, transparent, var(--bg-1) 30%, var(--bg-1) 70%, transparent);
-  padding: 80px 0;
-}
+/* ========================================================================
+   showcase
+   ======================================================================== */
+.showcase { background: linear-gradient(180deg, transparent, var(--bg-1) 30%, var(--bg-1) 70%, transparent); padding: 80px 0; }
 .springboard {
   background: linear-gradient(160deg, rgba(94, 92, 230, 0.18), rgba(10, 132, 255, 0.08));
   border: 0.5px solid var(--hairline-2);
   border-radius: var(--r-2xl);
   padding: 32px 24px;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
 }
 .springboard::before {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(circle at 30% 20%, rgba(255, 55, 95, 0.2), transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(48, 209, 88, 0.15), transparent 50%);
@@ -730,286 +534,222 @@ section { position: relative; z-index: 2; }
 }
 .springboard-grid {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 20px 16px;
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 720px; margin: 0 auto;
 }
-@media (min-width: 768px) {
-  .springboard-grid { grid-template-columns: repeat(6, 1fr); }
-}
+@media (min-width: 768px) { .springboard-grid { grid-template-columns: repeat(6, 1fr); } }
 .app-tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
   cursor: pointer;
   transition: transform 0.3s var(--spring);
 }
 .app-tile:hover { transform: scale(1.05); }
 .app-tile:active { transform: scale(0.92); }
 .app-icon {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 100%; aspect-ratio: 1;
   border-radius: var(--r-icon);
-  display: grid;
-  place-items: center;
+  display: grid; place-items: center;
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  color: white;
+  font-size: 22px; font-weight: 700; color: white;
   letter-spacing: -0.04em;
   box-shadow: 0 0 0 0.5px rgba(255,255,255,0.1) inset, 0 6px 16px rgba(0,0,0,0.4);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .app-icon::after {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent 50%);
 }
 .app-name {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 11px; font-weight: 500;
   color: var(--text-1);
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-/* ==========================================================================
-   pricing
-   ========================================================================== */
-.segctrl {
-  display: inline-flex;
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-1);
-  border-radius: 12px;
-  padding: 3px;
-  margin: 0 auto 48px;
-  position: relative;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-.seg-wrap { display: flex; justify-content: center; }
-.seg-btn {
-  position: relative;
-  z-index: 2;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-2);
-  border-radius: 9px;
-  transition: color 0.3s var(--ease);
-  cursor: pointer;
-}
-.seg-btn.active { color: var(--text-0); font-weight: 600; }
-.seg-thumb {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  height: calc(100% - 6px);
-  background: var(--surface-3);
-  border-radius: 9px;
-  transition: all 0.4s var(--spring);
-  z-index: 1;
-  box-shadow: 0 0 0 0.5px var(--hairline-2);
-}
-
-.pricing-card {
-  max-width: 560px;
-  margin: 0 auto;
-  background: var(--surface-1);
-  border: 0.5px solid var(--hairline-2);
+/* ========================================================================
+   PRICING — base card + add-on catalog
+   ======================================================================== */
+.base-card {
+  max-width: 700px; margin: 0 auto 80px;
+  background: linear-gradient(165deg, rgba(10, 132, 255, 0.18), rgba(94, 92, 230, 0.12), rgba(191, 90, 242, 0.08));
+  border: 0.5px solid var(--hairline-3);
   border-radius: var(--r-2xl);
-  padding: 40px;
+  padding: 36px;
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s var(--ease-out);
+  position: relative; overflow: hidden;
+  box-shadow: 0 0 80px rgba(94, 92, 230, 0.18);
 }
-.pricing-card::before {
+.base-card::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--card-glow, var(--grad-blue));
-  opacity: 0.08;
-  pointer-events: none;
-  transition: opacity 0.5s var(--ease);
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(94, 92, 230, 0.3), transparent 70%);
 }
-.price-badge {
-  display: inline-block;
-  padding: 4px 12px;
+.base-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,0.4);
+  border: 0.5px solid var(--hairline-2);
+  padding: 6px 12px 6px 8px;
   border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-bottom: 16px;
-  background: var(--surface-3);
-  color: var(--text-1);
+  font-size: 12px; font-weight: 600; color: var(--text-1);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin-bottom: 18px;
+  position: relative;
 }
-.price-badge.popular {
-  background: var(--grad-blue);
-  color: white;
+.base-pill::before {
+  content: ""; width: 8px; height: 8px;
+  background: var(--green); border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
 }
-.price-tier {
+.base-card h3 {
   font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-2);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  font-size: 36px; font-weight: 700; letter-spacing: -0.035em;
   margin-bottom: 8px;
 }
-.price-name {
-  font-family: var(--font-display);
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-.price-amount {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 24px;
+.base-amount {
+  display: flex; align-items: baseline; gap: 4px;
+  margin-bottom: 12px;
   font-feature-settings: "tnum";
 }
-.price-currency {
+.base-amount .currency {
   font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 600;
-  color: var(--text-2);
-  margin-right: -2px;
+  font-size: 32px; font-weight: 600; color: var(--text-2);
+  margin-right: -4px;
 }
-.price-num {
+.base-amount .num {
   font-family: var(--font-display);
-  font-size: 88px;
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  background: var(--card-glow, var(--grad-blue));
-  -webkit-background-clip: text;
-  background-clip: text;
+  font-size: 84px; font-weight: 700; letter-spacing: -0.05em; line-height: 0.9;
+  background: var(--grad-hero);
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.price-per {
-  font-size: 17px;
-  color: var(--text-2);
-  font-weight: 500;
+.base-amount .per { font-size: 18px; color: var(--text-2); font-weight: 500; }
+.base-amount .strike {
+  margin-left: 12px; font-size: 14px; color: var(--text-3);
+  display: inline-flex; flex-direction: column; gap: 0;
 }
-.price-desc {
-  font-size: 16px;
-  color: var(--text-1);
+.base-amount .strike s { color: var(--text-3); text-decoration: line-through; }
+.base-amount .strike strong { color: var(--green); font-weight: 600; }
+.base-card-desc {
+  font-size: 16px; color: var(--text-1); line-height: 1.55;
+  margin-bottom: 24px;
+}
+.base-features {
+  list-style: none; display: grid;
+  grid-template-columns: 1fr; gap: 10px;
   margin-bottom: 28px;
-  line-height: 1.5;
 }
-.price-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 32px;
+@media (min-width: 600px) { .base-features { grid-template-columns: 1fr 1fr; } }
+.base-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--text-1); line-height: 1.4;
 }
-.price-features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 15px;
-  color: var(--text-1);
-  line-height: 1.45;
-}
-.price-features svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.price-features svg circle { fill: rgba(48, 209, 88, 0.15); }
-.price-features svg path { stroke: var(--green); }
-.price-cta {
-  width: 100%;
-  background: var(--grad-blue);
-  color: white;
-  padding: 16px;
-  border-radius: var(--r-md);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  transition: all 0.2s var(--ease);
-  cursor: pointer;
-}
-.price-cta:hover { transform: scale(0.98); filter: brightness(1.1); }
-.price-cta:active { transform: scale(0.95); }
+.base-features svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+.base-features svg circle { fill: rgba(48, 209, 88, 0.18); }
+.base-features svg path { stroke: var(--green); }
 
-/* ==========================================================================
-   add-ons
-   ========================================================================== */
-.addons-card {
+/* catalog */
+.catalog-head { text-align: center; margin: 60px 0 40px; }
+.catalog-head h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 12px;
+}
+.catalog-head p { font-size: 17px; color: var(--text-2); max-width: 580px; margin: 0 auto; }
+
+/* category */
+.cat { margin-bottom: 56px; }
+.cat-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 18px; padding: 0 4px;
+}
+.cat-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.cat-icon svg { width: 20px; height: 20px; fill: white; }
+.cat-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; letter-spacing: -0.025em;
+  color: var(--text-0);
+  flex: 1;
+}
+.cat-sub { font-size: 13px; color: var(--text-3); }
+
+/* sub card */
+.cat-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .cat-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.sub {
   background: var(--surface-1);
   border: 0.5px solid var(--hairline-1);
-  border-radius: var(--r-2xl);
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  max-width: 720px;
-  margin: 0 auto;
-}
-.addon-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  border-bottom: 0.5px solid var(--hairline-1);
+  border-radius: var(--r-lg);
+  padding: 18px;
   cursor: pointer;
-  transition: background 0.2s var(--ease);
+  transition: all 0.3s var(--ease-out);
+  display: flex; flex-direction: column;
+  gap: 14px;
+  position: relative;
+  backdrop-filter: blur(10px);
 }
-.addon-row:last-child { border-bottom: 0; }
-.addon-row:hover { background: var(--surface-2); }
-.addon-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  display: grid;
-  place-items: center;
+.sub:hover {
+  background: var(--surface-2);
+  border-color: var(--hairline-2);
+  transform: translateY(-2px);
+}
+.sub.on {
+  background: var(--surface-3);
+  border-color: var(--accent, var(--blue));
+  box-shadow: 0 0 0 0.5px var(--accent, var(--blue)) inset, 0 8px 24px rgba(10, 132, 255, 0.18);
+}
+.sub-top {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.sub-ico {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: grid; place-items: center;
   flex-shrink: 0;
   color: white;
 }
-.addon-icon svg { width: 20px; height: 20px; fill: currentColor; }
-.addon-meta { flex: 1; min-width: 0; }
-.addon-name {
-  font-size: 16px;
-  font-weight: 500;
+.sub-ico svg { width: 20px; height: 20px; fill: currentColor; }
+.sub-info { flex: 1; min-width: 0; }
+.sub-name {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 600; letter-spacing: -0.015em;
   color: var(--text-0);
   margin-bottom: 2px;
 }
-.addon-desc {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.35;
+.sub-desc {
+  font-size: 13px; color: var(--text-2);
+  line-height: 1.4;
 }
-.addon-price {
+.sub-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--hairline-1);
+}
+.sub-price {
   font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-1);
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--text-0);
   font-feature-settings: "tnum";
-  white-space: nowrap;
-  text-align: right;
 }
-.addon-price small {
-  display: block;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-3);
-  margin-top: -2px;
+.sub-price small {
+  font-size: 12px; font-weight: 500; color: var(--text-3);
+  margin-left: 2px;
 }
 .toggle {
   position: relative;
-  width: 51px;
-  height: 31px;
+  width: 46px; height: 28px;
   background: rgba(120, 120, 128, 0.32);
   border-radius: 100px;
   flex-shrink: 0;
@@ -1018,116 +758,175 @@ section { position: relative; z-index: 2; }
 .toggle::after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 27px;
-  height: 27px;
-  background: white;
-  border-radius: 50%;
+  top: 2px; left: 2px;
+  width: 24px; height: 24px;
+  background: white; border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   transition: transform 0.3s var(--spring);
 }
-.addon-row.on .toggle { background: var(--green); }
-.addon-row.on .toggle::after { transform: translateX(20px); }
+.sub.on .toggle { background: var(--green); }
+.sub.on .toggle::after { transform: translateX(18px); }
 
-.addon-summary {
-  padding: 20px;
-  background: var(--bg-2);
-  border-top: 0.5px solid var(--hairline-2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
+/* ========================================================================
+   stack summary (sticky receipt)
+   ======================================================================== */
+.stack {
+  max-width: 700px; margin: 60px auto 0;
+  background: var(--surface-1);
+  border: 0.5px solid var(--hairline-2);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
 }
-.summary-totals {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.stack-head {
+  padding: 22px 24px 8px;
+  display: flex; align-items: center; gap: 12px;
 }
-.summary-line { font-size: 13px; color: var(--text-2); font-feature-settings: "tnum"; }
-.summary-line strong { color: var(--text-0); font-weight: 600; }
-.summary-total {
+.stack-head-mark {
+  width: 36px; height: 36px;
+  border-radius: var(--r-icon);
+  background: var(--grad-hero);
+  display: grid; place-items: center;
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: 800; font-size: 18px; color: white;
+  letter-spacing: -0.05em;
+}
+.stack-head h4 {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+}
+.stack-head-sub { font-size: 13px; color: var(--text-2); }
+
+.stack-list {
+  padding: 8px 12px 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.stack-line {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+.stack-line + .stack-line { border-top: 0.5px solid var(--hairline-1); border-radius: 0; padding-top: 12px; padding-bottom: 12px; }
+.stack-line-name { flex: 1; color: var(--text-1); }
+.stack-line-name strong { color: var(--text-0); font-weight: 500; }
+.stack-line-name small { display: block; color: var(--text-3); font-size: 12px; margin-top: 1px; }
+.stack-line-price {
+  font-family: var(--font-display);
+  font-weight: 600;
   color: var(--text-0);
   font-feature-settings: "tnum";
 }
-.summary-total small {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-2);
-  margin-left: 4px;
+.stack-line.required .stack-line-name strong::after {
+  content: "Required";
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--font-text);
+  font-size: 10px; font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 2px 6px;
+  background: rgba(10, 132, 255, 0.15);
+  border-radius: 4px;
+  vertical-align: middle;
 }
 
-/* ==========================================================================
-   compare table
-   ========================================================================== */
+.stack-foot {
+  padding: 18px 24px calc(20px + var(--safe-bottom));
+  background: var(--bg-2);
+  border-top: 0.5px solid var(--hairline-2);
+  display: flex; flex-direction: column; gap: 14px;
+}
+@media (min-width: 600px) {
+  .stack-foot { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.stack-total {
+  display: flex; flex-direction: column;
+  font-feature-settings: "tnum";
+}
+.stack-total-label { font-size: 13px; color: var(--text-2); }
+.stack-total-amount {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700; letter-spacing: -0.035em; line-height: 1;
+}
+.stack-total-amount small {
+  font-size: 15px; font-weight: 500; color: var(--text-2);
+  margin-left: 4px;
+}
+.stack-cta {
+  background: var(--grad-blue); color: white;
+  padding: 16px 28px; border-radius: 100px;
+  font-size: 16px; font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s var(--ease);
+}
+.stack-cta:hover { transform: scale(0.97); filter: brightness(1.1); }
+.stack-cta:active { transform: scale(0.94); }
+
+/* PWA vs alternatives table */
 .compare {
-  margin-top: 60px;
-  background: var(--surface-1);
-  border: 0.5px solid var(--hairline-1);
+  margin-top: 40px;
+  background: var(--surface-1); border: 0.5px solid var(--hairline-1);
   border-radius: var(--r-card);
   padding: 28px;
   overflow-x: auto;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
 }
-.compare table {
-  width: 100%;
-  min-width: 480px;
-  border-collapse: collapse;
-  font-size: 14px;
-}
+.compare table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 14px; }
 .compare th, .compare td {
   text-align: left;
   padding: 14px 12px;
   border-bottom: 0.5px solid var(--hairline-1);
 }
 .compare th {
-  font-weight: 600;
-  color: var(--text-0);
-  font-size: 13px;
-  letter-spacing: -0.01em;
+  font-weight: 600; color: var(--text-0);
+  font-size: 13px; letter-spacing: -0.01em;
 }
-.compare th:not(:first-child), .compare td:not(:first-child) { text-align: center; }
-.compare td { color: var(--text-1); }
-.compare td:first-child { color: var(--text-2); }
-.compare svg.check { width: 18px; height: 18px; }
+.compare th:first-child { font-weight: 500; color: var(--text-2); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+.compare th.win {
+  background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.1));
+  color: var(--text-0); font-weight: 700;
+  position: relative;
+}
+.compare th.win::before {
+  content: "BEST";
+  position: absolute;
+  top: -8px; left: 50%; transform: translateX(-50%);
+  background: var(--grad-blue);
+  color: white;
+  padding: 2px 8px;
+  font-size: 9px;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.compare td:first-child { color: var(--text-2); font-weight: 500; }
+.compare td:not(:first-child) { text-align: center; color: var(--text-1); }
+.compare td.win-cell { color: var(--green); font-weight: 600; }
+.compare td.bad-cell { color: var(--text-3); }
+.compare svg.check { width: 16px; height: 16px; }
 .compare svg.check path { stroke: var(--green); }
 .compare svg.check circle { fill: rgba(48, 209, 88, 0.15); }
-.compare .dash { color: var(--text-3); }
 
-/* ==========================================================================
-   FAQ
-   ========================================================================== */
+/* FAQ */
 .faq-list {
-  max-width: 760px;
-  margin: 0 auto;
-  background: var(--surface-1);
-  border: 0.5px solid var(--hairline-1);
+  max-width: 760px; margin: 0 auto;
+  background: var(--surface-1); border: 0.5px solid var(--hairline-1);
   border-radius: var(--r-2xl);
   overflow: hidden;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
 }
-.faq-item {
-  border-bottom: 0.5px solid var(--hairline-1);
-}
+.faq-item { border-bottom: 0.5px solid var(--hairline-1); }
 .faq-item:last-child { border-bottom: 0; }
 .faq-q {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
   padding: 20px 24px;
   font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-size: 17px; font-weight: 500; letter-spacing: -0.015em;
   color: var(--text-0);
   text-align: left;
   cursor: pointer;
@@ -1135,39 +934,25 @@ section { position: relative; z-index: 2; }
 }
 .faq-q:hover { background: var(--surface-2); }
 .faq-chev {
-  width: 24px;
-  height: 24px;
+  width: 24px; height: 24px;
   border-radius: 50%;
   background: var(--surface-2);
-  display: grid;
-  place-items: center;
+  display: grid; place-items: center;
   flex-shrink: 0;
   transition: transform 0.3s var(--spring);
 }
 .faq-chev::before {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   border-right: 1.5px solid var(--text-1);
   border-bottom: 1.5px solid var(--text-1);
   transform: rotate(45deg) translate(-1px, -1px);
 }
 .faq-item.open .faq-chev { transform: rotate(180deg); }
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s var(--ease);
-}
-.faq-a-inner {
-  padding: 0 24px 22px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--text-2);
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+.faq-a-inner { padding: 0 24px 22px; font-size: 15px; line-height: 1.6; color: var(--text-2); }
 
-/* ==========================================================================
-   final CTA
-   ========================================================================== */
+/* final CTA */
 .cta-card {
   position: relative;
   background: linear-gradient(135deg, rgba(10, 132, 255, 0.2), rgba(94, 92, 230, 0.2), rgba(191, 90, 242, 0.2));
@@ -1181,91 +966,59 @@ section { position: relative; z-index: 2; }
 }
 .cta-card::before {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(circle at 50% 0%, rgba(94, 92, 230, 0.4), transparent 60%);
-  pointer-events: none;
 }
 .cta-card h2 {
   position: relative;
   font-family: var(--font-display);
   font-size: clamp(36px, 6vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1;
   margin-bottom: 14px;
 }
 .cta-card p {
   position: relative;
-  font-size: 18px;
-  color: var(--text-1);
-  max-width: 460px;
-  margin: 0 auto 32px;
+  font-size: 18px; color: var(--text-1);
+  max-width: 460px; margin: 0 auto 32px;
 }
 
-/* ==========================================================================
-   footer
-   ========================================================================== */
+/* footer */
 footer {
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
   border-top: 0.5px solid var(--hairline-1);
   padding: 40px 0 calc(96px + var(--safe-bottom));
   margin-top: 80px;
 }
-@media (min-width: 768px) {
-  footer { padding-bottom: 40px; }
-}
+@media (min-width: 768px) { footer { padding-bottom: 40px; } }
 .foot {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  color: var(--text-3);
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;
+  font-size: 13px; color: var(--text-3);
 }
 .foot-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   color: var(--text-1);
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.04em;
+  font-weight: 700; font-size: 18px; letter-spacing: -0.04em;
 }
 .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .foot-links a { transition: color 0.2s var(--ease); }
 .foot-links a:hover { color: var(--text-0); }
 
-/* ==========================================================================
-   bottom tab bar (mobile)
-   ========================================================================== */
+/* tab bar */
 .tabbar {
-  position: fixed;
-  z-index: 45;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: fixed; z-index: 45;
+  bottom: 0; left: 0; right: 0;
   padding: 8px 12px calc(8px + var(--safe-bottom));
   background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   border-top: 0.5px solid var(--hairline-1);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: flex; justify-content: space-around; align-items: center;
 }
-@media (min-width: 768px) {
-  .tabbar { display: none; }
-}
+@media (min-width: 768px) { .tabbar { display: none; } }
 .tab {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 4px;
   color: var(--text-3);
   transition: color 0.2s var(--ease);
@@ -1275,33 +1028,17 @@ footer {
 .tab-label { font-size: 10px; font-weight: 500; letter-spacing: -0.01em; }
 .tab:active { transform: scale(0.92); }
 
-/* ==========================================================================
-   sheet modal
-   ========================================================================== */
+/* sheet */
 .sheet-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
-  pointer-events: none;
-  transition: all 0.4s var(--ease);
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(0, 0, 0, 0); backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0);
+  pointer-events: none; transition: all 0.4s var(--ease);
 }
-.sheet-backdrop.open {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  pointer-events: auto;
-}
+.sheet-backdrop.open { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: auto; }
 .sheet {
-  position: fixed;
-  z-index: 61;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 600px;
-  margin: 0 auto;
+  position: fixed; z-index: 61;
+  bottom: 0; left: 0; right: 0;
+  max-width: 600px; margin: 0 auto;
   background: var(--bg-2);
   border-radius: 28px 28px 0 0;
   border-top: 0.5px solid var(--hairline-2);
@@ -1312,108 +1049,103 @@ footer {
   overflow-y: auto;
 }
 .sheet.open { transform: translateY(0); }
-.sheet-handle {
-  width: 36px;
-  height: 5px;
-  background: var(--text-4);
-  border-radius: 100px;
-  margin: 0 auto 24px;
-}
+.sheet-handle { width: 36px; height: 5px; background: var(--text-4); border-radius: 100px; margin: 0 auto 24px; }
 .sheet-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
 }
 .sheet-header h3 {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-size: 22px; font-weight: 600; letter-spacing: -0.025em;
 }
 .sheet-close {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--surface-3);
-  display: grid;
-  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 50%; background: var(--surface-3);
+  display: grid; place-items: center;
   color: var(--text-1);
+  position: relative;
 }
 .sheet-close::before, .sheet-close::after {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 1.5px;
-  background: var(--text-1);
-  border-radius: 2px;
+  width: 14px; height: 1.5px;
+  background: var(--text-1); border-radius: 2px;
 }
 .sheet-close::before { transform: rotate(45deg); }
 .sheet-close::after { transform: rotate(-45deg); }
 
-.field { margin-bottom: 16px; }
+.sheet-stack-preview {
+  background: var(--surface-2); border: 0.5px solid var(--hairline-1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: var(--text-1);
+}
+.sheet-stack-preview strong { color: var(--text-0); display: block; font-size: 14px; margin-bottom: 4px; }
+.sheet-stack-preview .total { color: var(--blue); font-weight: 600; }
+
+.field { margin-bottom: 14px; }
 .field-label {
   display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-2);
+  font-size: 13px; font-weight: 500; color: var(--text-2);
   margin-bottom: 6px;
 }
-.field-input,
-.field-textarea {
-  background: var(--surface-2);
-  border: 0.5px solid var(--hairline-1);
+.field-input, .field-textarea {
+  background: var(--surface-2); border: 0.5px solid var(--hairline-1);
   border-radius: var(--r-md);
   padding: 14px 16px;
-  font-size: 16px;
-  color: var(--text-0);
+  font-size: 16px; color: var(--text-0);
   width: 100%;
   transition: all 0.2s var(--ease);
 }
-.field-input:focus,
-.field-textarea:focus {
-  border-color: var(--blue);
-  background: var(--surface-3);
-}
-.field-textarea { min-height: 90px; resize: vertical; font-family: inherit; }
+.field-input:focus, .field-textarea:focus { border-color: var(--blue); background: var(--surface-3); }
+.field-textarea { min-height: 80px; resize: vertical; font-family: inherit; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
 .sheet-submit {
   width: 100%;
-  background: var(--grad-blue);
-  color: white;
+  background: var(--grad-blue); color: white;
   padding: 16px;
   border-radius: var(--r-md);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 16px; font-weight: 600;
   margin-top: 8px;
   transition: all 0.2s var(--ease);
 }
 .sheet-submit:hover { filter: brightness(1.1); }
 .sheet-submit:active { transform: scale(0.98); }
 
-/* ==========================================================================
-   reveal animations
-   ========================================================================== */
+/* reveal */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 0; transform: translateY(24px);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 .reveal.in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .phone, .island-dot, .hero h1 .dot { animation: none; }
 }
+
+/* category color tokens */
+.cat-comm .cat-icon, .cat-comm .sub-ico { background: var(--grad-blue); }
+.cat-comm { --accent: var(--blue); }
+.cat-shop .cat-icon, .cat-shop .sub-ico { background: var(--grad-green); }
+.cat-shop { --accent: var(--green); }
+.cat-user .cat-icon, .cat-user .sub-ico { background: var(--grad-purple); }
+.cat-user { --accent: var(--indigo); }
+.cat-data .cat-icon, .cat-data .sub-ico { background: linear-gradient(135deg, #ff375f, #bf5af2); }
+.cat-data { --accent: var(--pink); }
+.cat-book .cat-icon, .cat-book .sub-ico { background: var(--grad-orange); }
+.cat-book { --accent: var(--orange); }
+.cat-ops .cat-icon, .cat-ops .sub-ico { background: var(--grad-red); }
+.cat-ops { --accent: var(--red); }
+.cat-prem .cat-icon, .cat-prem .sub-ico { background: var(--grad-yellow); }
+.cat-prem { --accent: var(--yellow); }
 </style>
 </head>
 <body>
 
-<!-- ============================ STATUS BAR ============================ -->
+<!-- STATUS BAR -->
 <div class="statusbar" aria-hidden="true">
   <div class="sb-time" id="sbTime">9:41</div>
   <div class="sb-icons">
@@ -1423,71 +1155,54 @@ footer {
   </div>
 </div>
 
-<!-- ============================ DYNAMIC ISLAND ============================ -->
+<!-- DYNAMIC ISLAND -->
 <div class="island-wrap">
   <div class="island" id="island">
     <span class="island-dot"></span>
-    <span class="island-text" id="islandText"><strong>app.</strong> &mdash; ready in 5 days</span>
+    <span class="island-text" id="islandText"><strong>app.</strong> &mdash; from $49/month, setup waived</span>
   </div>
 </div>
 
-<!-- ============================ NAV ============================ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="brand">
-      <span class="brand-mark">a.</span>
-      <span>app.</span>
-    </a>
+    <a href="#" class="brand"><span class="brand-mark">a.</span><span>app.</span></a>
     <div class="nav-links">
+      <a href="#why" class="nav-link">Why PWA?</a>
       <a href="#how" class="nav-link">How it works</a>
       <a href="#showcase" class="nav-link">Showcase</a>
       <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#addons" class="nav-link">Add-ons</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
     <button class="nav-cta" data-open-sheet>Start building</button>
   </div>
 </nav>
 
-<!-- ============================ HERO ============================ -->
+<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-eyebrow reveal">
-      <span class="hero-eyebrow-badge">NEW</span>
-      <span>The PWA build engine. Now open.</span>
+      <span class="hero-eyebrow-badge">$0 SETUP</span>
+      <span>Setup is always waived &mdash; just your monthly subscription.</span>
     </div>
     <h1 class="reveal">app<span class="dot" aria-hidden="true"></span></h1>
-    <p class="hero-tag reveal">
-      We build your app. <span class="muted">You run your business.</span>
-    </p>
+    <p class="hero-tag reveal">We build your app. <span class="muted">You run your business.</span></p>
     <p class="hero-sub reveal">
-      An installable progressive web app, designed and shipped to you in days &mdash; not months. iPhone, Android, and desktop. One app. Everywhere.
+      A custom PWA, hosted and managed by us. From <strong style="color:var(--text-0)">$49/month</strong>. Setup waived. Installable on iPhone, Android, and desktop &mdash; without the App Store.
     </p>
     <div class="hero-cta reveal">
-      <button class="btn btn-primary" data-open-sheet>
-        Start building &mdash; from $49
-      </button>
-      <a href="#pricing" class="btn btn-secondary">See pricing</a>
+      <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
+      <a href="#why" class="btn btn-secondary">Why PWA beats native</a>
     </div>
 
-    <!-- Phone mockup -->
     <div class="device-stage reveal" aria-hidden="true">
       <div class="phone">
         <div class="phone-screen">
           <div class="phone-notch"></div>
-          <div class="phone-statusbar">
-            <span>9:41</span>
-            <span>&#x2022;&#x2022;&#x2022;</span>
-          </div>
+          <div class="phone-statusbar"><span>9:41</span><span>&#x2022;&#x2022;&#x2022;</span></div>
           <div class="phone-content">
-            <div class="phone-card accent">
-              <strong>Welcome back, Sam</strong>
-              3 jobs scheduled today
-            </div>
-            <div class="phone-card">
-              <strong>Today's revenue</strong>
-              $1,840 &middot; 4 invoices paid
-            </div>
+            <div class="phone-card accent"><strong>Welcome back, Sam</strong>3 jobs scheduled today</div>
+            <div class="phone-card"><strong>Today's revenue</strong>$1,840 &middot; 4 invoices paid</div>
             <div class="phone-grid">
               <div class="phone-icon" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)">B</div>
               <div class="phone-icon" style="background:linear-gradient(135deg,#ff375f,#ff9f0a)">P</div>
@@ -1502,436 +1217,755 @@ footer {
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ============================ STATS ============================ -->
+<!-- STATS -->
 <section class="stats">
   <div class="wrap">
     <div class="stats-grid reveal">
-      <div class="stat">
-        <div class="stat-num">5d</div>
-        <div class="stat-label">Average build &amp; ship time</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Installable on iOS, Android, desktop</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">0</div>
-        <div class="stat-label">App store fees, ever</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">$49</div>
-        <div class="stat-label">Real apps, that low</div>
-      </div>
+      <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Setup fee. Always waived.</div></div>
+      <div class="stat"><div class="stat-num">$49<span style="font-size:.5em">/mo</span></div><div class="stat-label">Starts here. Cancel anytime.</div></div>
+      <div class="stat"><div class="stat-num">0%</div><div class="stat-label">App Store / Play Store cut</div></div>
+      <div class="stat"><div class="stat-num">5d</div><div class="stat-label">From signup to live PWA</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============================ HOW IT WORKS ============================ -->
+<!-- WHY PWA -->
+<section class="section-pad" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="t-eyebrow">why pwa?</span>
+      <h2>The web won. <span class="gradient-text">Your app should be on it.</span></h2>
+      <p>A PWA is an app that lives on the web. Tap "Save to Home Screen" once and it sits next to Instagram &mdash; same icon, same launch, same feel. Better than the App Store. Here's why.</p>
+    </div>
+
+    <div class="vs-grid reveal">
+      <div class="vs-card">
+        <div class="vs-card-sub">The old way</div>
+        <div class="vs-card-head">
+          <div class="vs-card-icon">&#x1F4F1;</div>
+          <div class="vs-card-title">Native iOS / Android app</div>
+        </div>
+        <ul class="vs-list">
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>Apple takes 15-30% of every transaction. Google takes 15-30%. Forever.</div></li>
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>Submit, wait days, hope they don't reject you. Repeat for every update.</div></li>
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>$5K-$80K to build. Two codebases (iOS &amp; Android). Two engineering bills.</div></li>
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>$99/year Apple developer fee. $25 Google fee. Compliance overhead.</div></li>
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>Customer must search the App Store, find you, download &mdash; a 30-second mountain.</div></li>
+          <li class="bad"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-cross"/><path d="M8 8l8 8M16 8l-8 8" class="ico-cross" stroke-linecap="round"/></svg><div>Apple can de-list your app on a whim. You don't own the relationship.</div></li>
+        </ul>
+      </div>
+
+      <div class="vs-divider">VS</div>
+
+      <div class="vs-card win">
+        <div class="vs-card-sub">The app. way</div>
+        <div class="vs-card-head">
+          <div class="vs-card-icon">a.</div>
+          <div class="vs-card-title">PWA &mdash; Progressive Web App</div>
+        </div>
+        <ul class="vs-list">
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>0% platform fees.</strong> Stripe directly. You keep every dollar minus card fees.</div></li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Instant updates.</strong> Push a fix at 9am, customers see it at 9:01am. No reviews.</div></li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>One codebase, every device.</strong> iPhone, Android, iPad, desktop &mdash; identical.</div></li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Works offline.</strong> Local storage built-in. Your app keeps working with no signal.</div></li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Install in 2 seconds.</strong> Tap your link, tap "Save to Home Screen," done.</div></li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="11" class="ico-check"/><path d="M7 12l3.5 3.5L17 9" class="ico-check" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>You own it.</strong> No platform between you and your customers. Direct, forever.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--text-3);margin-top:24px;font-size:13px;font-style:italic">
+      Starbucks, Twitter (X), Pinterest, Uber, BMW, and Spotify all run as PWAs. You can too.
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
 <section class="section-pad" id="how">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="t-eyebrow">how it works</span>
-      <h2>Three steps. Then it&rsquo;s live.</h2>
-      <p>No 90-day discovery phases. No bloated retainers. Tell us what you need, we build it, you launch.</p>
+      <h2>Pick. Build. Launch.</h2>
+      <p>Choose your base PWA, stack the features you need, we build everything in days. Cancel features anytime &mdash; or stack more as you grow.</p>
     </div>
-
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <h3>Tell us the idea</h3>
-        <p>Fill out a short brief. Screens you need, brand colors, content. We follow up with a 20-minute call to lock specs.</p>
+        <h3>Pick your stack</h3>
+        <p>Start with the $49/mo base PWA. Toggle on add-on subscriptions for the capabilities you need &mdash; payments, accounts, bookings, dispatch, you pick.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
-        <h3>We build &amp; design</h3>
-        <p>Our team designs and codes the app to your spec, hosted on our infrastructure. You get a live preview link in 3-7 days.</p>
+        <h3>We build &amp; host</h3>
+        <p>Our team designs your app to your brand and ships it live in 5 days. Hosted on our infrastructure with SSL, CDN, and 99.9% uptime built in.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
-        <h3>You launch &amp; install</h3>
-        <p>Share the URL. Customers tap &ldquo;Add to Home Screen.&rdquo; Your app sits next to Instagram on their phone &mdash; no App Store needed.</p>
+        <h3>Customers install in 2 seconds</h3>
+        <p>Share your URL. Customers tap "Save to Home Screen." Your app sits next to Instagram &mdash; same icon, same launch, same feel. Works offline. No App Store.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================ SHOWCASE ============================ -->
+<!-- SHOWCASE -->
 <section class="showcase" id="showcase">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="t-eyebrow">what we build</span>
       <h2>Pick a category. We&rsquo;ve probably built it.</h2>
-      <p>Every kind of business. Every kind of use case. Designed and shipped from $49.</p>
+      <p>Restaurants. Service businesses. Bookings. Loyalty. Field crews. Real estate. Portfolios. Newsletters. Memberships. Any business model fits.</p>
     </div>
-
     <div class="springboard reveal">
       <div class="springboard-grid">
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#ff375f,#ff9f0a)">B</div>
-          <span class="app-name">Bistro</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)">C</div>
-          <span class="app-name">Crew</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#bf5af2,#ff375f)">S</div>
-          <span class="app-name">Studio</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#30d158,#64d2ff)">P</div>
-          <span class="app-name">Pulse</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#ffd60a,#ff9f0a)">L</div>
-          <span class="app-name">Loop</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#64d2ff,#5ac8fa)">P</div>
-          <span class="app-name">Plot</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#5e5ce6,#bf5af2)">M</div>
-          <span class="app-name">Menu</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff453a)">B</div>
-          <span class="app-name">Booth</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#30d158,#66d4cf)">Y</div>
-          <span class="app-name">Yard</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#ff375f,#bf5af2)">T</div>
-          <span class="app-name">Tab</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#0a84ff,#64d2ff)">S</div>
-          <span class="app-name">Site</span>
-        </div>
-        <div class="app-tile">
-          <div class="app-icon" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)">B</div>
-          <span class="app-name">Brief</span>
-        </div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#ff375f,#ff9f0a)">B</div><span class="app-name">Bistro</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)">C</div><span class="app-name">Crew</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#bf5af2,#ff375f)">S</div><span class="app-name">Studio</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#30d158,#64d2ff)">P</div><span class="app-name">Pulse</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#ffd60a,#ff9f0a)">L</div><span class="app-name">Loop</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#64d2ff,#5ac8fa)">P</div><span class="app-name">Plot</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#5e5ce6,#bf5af2)">M</div><span class="app-name">Menu</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff453a)">B</div><span class="app-name">Booth</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#30d158,#66d4cf)">Y</div><span class="app-name">Yard</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#ff375f,#bf5af2)">T</div><span class="app-name">Tab</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#0a84ff,#64d2ff)">S</div><span class="app-name">Site</span></div>
+        <div class="app-tile"><div class="app-icon" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)">B</div><span class="app-name">Brief</span></div>
       </div>
     </div>
-
-    <p style="text-align:center;color:var(--text-2);margin-top:24px;font-size:14px">
-      Restaurants &middot; service businesses &middot; portfolios &middot; booking &middot; loyalty &middot; events &middot; real estate &middot; field service &middot; menus &middot; newsletters
-    </p>
   </div>
 </section>
 
-<!-- ============================ PRICING ============================ -->
+<!-- PRICING -->
 <section class="section-pad" id="pricing">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="t-eyebrow">pricing</span>
-      <h2>Three tiers. <span class="gradient-text">No surprises.</span></h2>
-      <p>One-time build fee. Hosting included. Add capability as you grow with monthly add-ons below.</p>
+      <h2>$49/mo to start. <span class="gradient-text">Setup waived.</span></h2>
+      <p>One subscription gets your app live. Stack add-on subscriptions for any capability. Toggle on what you need, off what you don't. Cancel anytime.</p>
     </div>
 
-    <div class="seg-wrap reveal">
-      <div class="segctrl" role="tablist">
-        <div class="seg-thumb" id="segThumb"></div>
-        <button class="seg-btn active" data-tier="lite">Lite</button>
-        <button class="seg-btn" data-tier="pro">Pro</button>
-        <button class="seg-btn" data-tier="max">Max</button>
+    <!-- BASE PWA CARD -->
+    <div class="base-card reveal">
+      <span class="base-pill">Required &middot; Always on</span>
+      <h3>Base PWA</h3>
+      <div class="base-amount">
+        <span class="currency">$</span><span class="num">49</span><span class="per">/ month</span>
+        <span class="strike"><s>$499 setup</s><strong>Setup waived</strong></span>
       </div>
-    </div>
-
-    <div class="pricing-card reveal" id="priceCard" style="--card-glow: var(--grad-blue)">
-      <span class="price-badge" id="priceBadge">Foundation</span>
-      <div class="price-tier" id="priceTier">Lite</div>
-      <div class="price-amount">
-        <span class="price-currency">$</span>
-        <span class="price-num" id="priceNum">49</span>
-        <span class="price-per">/ one-time build</span>
-      </div>
-      <p class="price-desc" id="priceDesc">A clean, single-purpose app. Perfect for menus, schedules, info portals, and simple landing apps. Hosted by us. Installable everywhere.</p>
-      <ul class="price-features" id="priceFeatures">
+      <p class="base-card-desc">A custom PWA, designed and built for your business. Hosted by us. Installable on every device. Works offline. Updates instantly. Your foundation.</p>
+      <ul class="base-features">
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom-built PWA, your brand</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Installable on iPhone, Android, desktop</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Works offline (local storage)</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Save-to-Home-Screen ready</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>SSL, CDN, 99.9% uptime hosting</li>
         <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Up to 5 sections / screens</li>
-        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hosted on app.nepa-pro.com subdomain</li>
-        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Mobile-first PWA, installable on iOS &amp; Android</li>
-        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom logo, colors, photos</li>
-        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>7-day delivery</li>
-        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>One round of revisions</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Subdomain: yours.app.nepa-pro.com</li>
+        <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>5-day delivery, free updates</li>
       </ul>
-      <button class="price-cta" data-open-sheet>Start with this tier</button>
+      <button class="btn btn-primary" data-open-sheet style="width:100%">Start with the base &mdash; $49/mo</button>
     </div>
 
-    <!-- Compare table -->
+    <!-- CATALOG HEAD -->
+    <div class="catalog-head reveal">
+      <h3>Stack capabilities. <span class="gradient-text">Each its own subscription.</span></h3>
+      <p>Every add-on below is a separate subscription that runs alongside your base PWA. Toggle them on, see your monthly total update live. Mix and match.</p>
+    </div>
+
+    <!-- COMMUNICATIONS -->
+    <div class="cat cat-comm reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v.01L12 11l6-4.99V6H6zm12 2.5l-6 5-6-5V18h12V8.5z"/></svg></div>
+        <div class="cat-title">Communications</div>
+        <div class="cat-sub">Reach customers</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="email" data-name="Email backend" data-price="19">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm14.5 2L12 12.5 5.5 8h13z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Email backend</div>
+              <div class="sub-desc">Transactional &amp; marketing emails. Custom domain.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="sms" data-name="SMS messaging" data-price="29">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">SMS / texting</div>
+              <div class="sub-desc">Two-way text. Confirmations, reminders, support.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="push" data-name="Push notifications" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 1 0-12 0v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Push notifications</div>
+              <div class="sub-desc">Native push to home-screen apps. Segments &amp; campaigns.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="livechat" data-name="Live chat" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Live chat widget</div>
+              <div class="sub-desc">Real-time chat in-app. Multi-agent inbox, mobile.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="ai" data-name="AI chatbot" data-price="39">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v1H6a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4v-6a4 4 0 0 0-4-4h-2V6a4 4 0 0 0-4-4zm-3 11a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">AI chatbot</div>
+              <div class="sub-desc">24/7 smart bot trained on your business &amp; FAQs.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="newsletter" data-name="Newsletter" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7h10v2H7V7zm0 4h10v2H7v-2zm6 4H7v-2h6v2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Newsletter signup</div>
+              <div class="sub-desc">List builder, signup forms, double opt-in compliance.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMERCE -->
+    <div class="cat cat-shop reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M7 4h-2l-3 9v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-9l-3-9h-2v6h-10v-6zm0 9h10v2h-10v-2z"/></svg></div>
+        <div class="cat-title">Commerce</div>
+        <div class="cat-sub">Take payments &amp; sell</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="stripe" data-name="Stripe payments" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M3 7c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V7zm2 0v2h14V7H5zm14 4H5v6h14v-6z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Stripe payments</div>
+              <div class="sub-desc">One-time payments, deposits, donations, gift cards.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="subscriptions" data-name="Subscription billing" data-price="35">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M17.65 6.35A8 8 0 1 0 19.73 14h-2.08a6 6 0 1 1-1.51-6.24L13 11h7V4l-2.35 2.35z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Subscription billing</div>
+              <div class="sub-desc">Recurring plans, trials, upgrades, prorated changes.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="catalog" data-name="Product catalog" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Product catalog</div>
+              <div class="sub-desc">Items, prices, images, variants &mdash; full storefront.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="invoicing" data-name="Invoicing" data-price="19">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v2H8v-2zm0 4h6v2H8v-2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Invoicing</div>
+              <div class="sub-desc">Send invoices, track paid/unpaid, auto-reminders.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="coupons" data-name="Coupons &amp; discounts" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7c0 .55.22 1.05.59 1.42l9 9a2 2 0 0 0 2.83 0l7-7a2 2 0 0 0 0-2.84zM5.5 7A1.5 1.5 0 1 1 7 5.5 1.5 1.5 0 0 1 5.5 7z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Coupons &amp; promo codes</div>
+              <div class="sub-desc">Discount codes, expirations, single-use, BOGO.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS -->
+    <div class="cat cat-user reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg></div>
+        <div class="cat-title">Users &amp; Accounts</div>
+        <div class="cat-sub">Members &amp; logins</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="auth" data-name="User accounts &amp; auth" data-price="29">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zM9 6a3 3 0 0 1 6 0v2H9V6zm3 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">User accounts &amp; auth</div>
+              <div class="sub-desc">Email/password signup, sessions, password reset.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="social" data-name="Social login" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Social login</div>
+              <div class="sub-desc">Sign in with Apple, Google, Facebook &mdash; one tap.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="member" data-name="Member portal" data-price="39">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Member portal</div>
+              <div class="sub-desc">Gated content, profile pages, member dashboards.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$39<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="roles" data-name="Roles &amp; permissions" data-price="20">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zM18 7l-1.4 1.4 2.6 2.6H14v2h5.2l-2.6 2.6L18 17l5-5z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Roles &amp; permissions</div>
+              <div class="sub-desc">Admin, manager, staff, customer &mdash; granular access.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA -->
+    <div class="cat cat-data reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 14c-3.87 0-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V15c0 .5-2.13 2-6 2zm0-4c-3.87 0-6-1.5-6-2V8.77c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V11c0 .5-2.13 2-6 2zm0-4c-3.87 0-6-1.5-6-2s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2z"/></svg></div>
+        <div class="cat-title">Data &amp; Content</div>
+        <div class="cat-sub">Store, search, publish</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="db" data-name="Database hosting" data-price="29">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm6 14c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V17z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Database hosting</div>
+              <div class="sub-desc">Custom data, queries, backups, growing tables.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="crm" data-name="CRM integration" data-price="35">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">CRM integration</div>
+              <div class="sub-desc">SuiteDash, HubSpot, Salesforce &mdash; bi-directional sync.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="analytics" data-name="Analytics" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M3 13h2v8H3v-8zm4-4h2v12H7V9zm4-4h2v16h-2V5zm4 7h2v9h-2v-9zm4-3h2v12h-2V9z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Analytics dashboard</div>
+              <div class="sub-desc">Visitors, conversions, revenue, retention &mdash; live.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="cms" data-name="Blog / CMS" data-price="19">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5zm2 2v2h14V7H5zm0 4v8h9v-8H5zm11 0v8h3v-8h-3z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Blog / CMS</div>
+              <div class="sub-desc">Posts, categories, drafts, scheduled publishing.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$19<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="gallery" data-name="Photo gallery" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Photo gallery</div>
+              <div class="sub-desc">Albums, lightbox, filters &mdash; portfolios &amp; products.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="search" data-name="Site search" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 1 0 13 15.5l.27.28v.79l5 5L19.49 20l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.49 4.49 0 0 1 9.5 14z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Site search</div>
+              <div class="sub-desc">Fast in-app search across all your content.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKING -->
+    <div class="cat cat-book reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg></div>
+        <div class="cat-title">Booking &amp; Scheduling</div>
+        <div class="cat-sub">Appointments &amp; events</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="appts" data-name="Appointments" data-price="29">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Appointments</div>
+              <div class="sub-desc">Bookable time slots, rules, reminders, sync.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="reservations" data-name="Reservations" data-price="29">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M8.1 13.34l2.83-2.83L3.91 3.5a4 4 0 0 0 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Reservations</div>
+              <div class="sub-desc">Tables, rooms, equipment &mdash; capacity &amp; deposits.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$29<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="events" data-name="Event tickets" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M22 10V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4a2 2 0 0 1 0 4v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4zM13 17.5h-2v-2h2v2zm0-4.5h-2v-2h2v2zm0-4.5h-2v-2h2v2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Event tickets</div>
+              <div class="sub-desc">Sell tickets, scan at door, capacity &amp; tiers.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="calsync" data-name="Calendar sync" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1h-2zm3 19H5V8h14v12z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Calendar sync</div>
+              <div class="sub-desc">Two-way sync with Google &amp; Apple Calendar.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATIONS -->
+    <div class="cat cat-ops reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9C9.4.6 5.1.5 2.5 3.1c-1.7 1.7-2.3 4-1.7 6.2L4 6.1l3.4 3.4-3.4 3.4-3.1-3.1c-.6 2.2 0 4.5 1.7 6.2 1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.6-2.6c.5-.4.5-1.1.1-1.5z"/></svg></div>
+        <div class="cat-title">Operations &amp; Marketing</div>
+        <div class="cat-sub">Run the business</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="dispatch" data-name="Job dispatch" data-price="35">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Job dispatch</div>
+              <div class="sub-desc">Assign work, track crews, GPS check-ins, signatures.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$35<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="quotes" data-name="Quote builder" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM7 7h10v2H7V7zm0 4h10v2H7v-2zm6 4H7v-2h6v2z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Quote builder</div>
+              <div class="sub-desc">Itemized estimates with line items, taxes, e-sign.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="reviews" data-name="Reviews" data-price="15">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Reviews &amp; ratings</div>
+              <div class="sub-desc">Collect, display, moderate &mdash; push to Google &amp; Yelp.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$15<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="loyalty" data-name="Loyalty program" data-price="25">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Loyalty program</div>
+              <div class="sub-desc">Points, stamps, tiers, push-back rewards.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$25<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="referrals" data-name="Referral tracking" data-price="20">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0 0 6c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-2.92z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Referral tracking</div>
+              <div class="sub-desc">Customer-share links, tracking, payout flows.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$20<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="cat cat-prem reveal">
+      <div class="cat-head">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+        <div class="cat-title">Premium</div>
+        <div class="cat-sub">White-glove options</div>
+      </div>
+      <div class="cat-grid">
+        <div class="sub" data-id="domain" data-name="Custom domain" data-price="9">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-3.16c-.34-1.32-.85-2.55-1.5-3.55A8.04 8.04 0 0 1 18.93 8zM12 4c.92 0 2.21 1.7 2.83 4H9.17C9.79 5.7 11.08 4 12 4z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Custom domain</div>
+              <div class="sub-desc">yourbrand.com instead of subdomain. SSL included.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$9<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="white" data-name="White-glove support" data-price="75">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M12 2L4 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 8-6.45 8-12V5l-9-3z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">White-glove support</div>
+              <div class="sub-desc">Same-day fixes, dedicated channel, monthly check-ins.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$75<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="wrap" data-name="Native app wrap" data-price="99">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Native app wrapper</div>
+              <div class="sub-desc">Optional &mdash; ship to App Store &amp; Play Store too.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$99<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+
+        <div class="sub" data-id="priority" data-name="Priority delivery" data-price="49">
+          <div class="sub-top">
+            <div class="sub-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="sub-info">
+              <div class="sub-name">Priority delivery</div>
+              <div class="sub-desc">3-day build instead of 5. Front-of-the-line builds.</div>
+            </div>
+          </div>
+          <div class="sub-bottom"><div class="sub-price">$49<small>/mo</small></div><div class="toggle"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STACK SUMMARY -->
+    <div class="stack reveal" id="stack">
+      <div class="stack-head">
+        <div class="stack-head-mark">a.</div>
+        <div>
+          <h4 id="stackTitle">Your stack</h4>
+          <div class="stack-head-sub" id="stackSub">Base PWA only</div>
+        </div>
+      </div>
+      <div class="stack-list" id="stackList">
+        <div class="stack-line required">
+          <div class="stack-line-name"><strong>Base PWA</strong><small>Custom-built, hosted, installable</small></div>
+          <div class="stack-line-price">$49<small>/mo</small></div>
+        </div>
+      </div>
+      <div class="stack-foot">
+        <div class="stack-total">
+          <div class="stack-total-label">Your monthly subscription</div>
+          <div class="stack-total-amount">$<span id="stackTotal">49</span><small>/month</small></div>
+        </div>
+        <button class="stack-cta" data-open-sheet>Subscribe with this stack</button>
+      </div>
+    </div>
+
+    <!-- COMPARE TABLE -->
     <div class="compare reveal">
       <table>
         <thead>
           <tr>
             <th>Feature</th>
-            <th>Lite</th>
-            <th>Pro</th>
-            <th>Max</th>
+            <th>DIY (Wix / Squarespace)</th>
+            <th>Native iOS / Android</th>
+            <th class="win">app. PWA</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Sections / screens</td><td>5</td><td>20</td><td>Unlimited</td></tr>
-          <tr><td>Custom branding</td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-          <tr><td>Form capture</td><td><span class="dash">&mdash;</span></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-          <tr><td>Multi-page navigation</td><td><span class="dash">&mdash;</span></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-          <tr><td>iOS-native components</td><td><span class="dash">&mdash;</span></td><td><span class="dash">Basic</span></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-          <tr><td>Push notifications-ready</td><td><span class="dash">&mdash;</span></td><td><span class="dash">&mdash;</span></td><td><svg class="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
-          <tr><td>Delivery</td><td>7 days</td><td>5 days</td><td>3 days</td></tr>
-          <tr><td>Revisions</td><td>1 round</td><td>3 rounds</td><td>30 days</td></tr>
+          <tr><td>Setup cost</td><td class="bad-cell">$0&ndash;$300</td><td class="bad-cell">$5K&ndash;$80K</td><td class="win-cell">$0 (waived)</td></tr>
+          <tr><td>Monthly</td><td>$20&ndash;$50</td><td class="bad-cell">$99/yr Apple fee</td><td class="win-cell">From $49/mo</td></tr>
+          <tr><td>Time to launch</td><td>Hours of DIY</td><td class="bad-cell">3&ndash;6 months</td><td class="win-cell">5 days</td></tr>
+          <tr><td>Apple / Google cut</td><td>n/a</td><td class="bad-cell">15&ndash;30%</td><td class="win-cell">0%</td></tr>
+          <tr><td>Updates</td><td class="win-cell">Instant</td><td class="bad-cell">Days (review)</td><td class="win-cell">Instant</td></tr>
+          <tr><td>Works offline</td><td class="bad-cell">No</td><td class="win-cell">Yes</td><td class="win-cell">Yes</td></tr>
+          <tr><td>iPhone + Android + desktop</td><td class="bad-cell">Web only</td><td class="bad-cell">Two builds</td><td class="win-cell">One app</td></tr>
+          <tr><td>Custom backend</td><td class="bad-cell">Limited</td><td>Build from scratch</td><td class="win-cell">Modular add-ons</td></tr>
+          <tr><td>You own the relationship</td><td class="bad-cell">Platform locked</td><td class="bad-cell">Apple gatekeeps</td><td class="win-cell">Yes &mdash; direct</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- ============================ ADD-ONS ============================ -->
-<section class="section-pad" id="addons">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="t-eyebrow">add-ons</span>
-      <h2>Plug in the backend, only when you need it.</h2>
-      <p>Real capability &mdash; emails, payments, CRM, accounts. Toggle on what you need. See the live total.</p>
-    </div>
-
-    <div class="addons-card reveal" id="addonsCard">
-      <div class="addon-row" data-addon data-price="29">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)">
-          <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm2 0v.01L12 11l6-4.99V6H6zm12 2.5l-6 5-6-5V18h12V8.5z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">Email backend</div>
-          <div class="addon-desc">Transactional + marketing email. Custom domain, automations.</div>
-        </div>
-        <div class="addon-price">$29<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="49">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#bf5af2,#5e5ce6)">
-          <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">CRM hookup</div>
-          <div class="addon-desc">Connect SuiteDash, HubSpot, or any custom CRM via API.</div>
-        </div>
-        <div class="addon-price">$49<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="25">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#30d158,#64d2ff)">
-          <svg viewBox="0 0 24 24"><path d="M3 7c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V7zm2 0v2h14V7H5zm14 4H5v6h14v-6zm-12 3h4v2H7v-2z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">Stripe / Square payments</div>
-          <div class="addon-desc">Take payments, deposits, recurring &mdash; right in the app.</div>
-        </div>
-        <div class="addon-price">$25<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="10">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#64d2ff,#5ac8fa)">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-3.16c-.34-1.32-.85-2.55-1.5-3.55A8.04 8.04 0 0 1 18.93 8zM12 4c.92 0 2.21 1.7 2.83 4H9.17C9.79 5.7 11.08 4 12 4zM4.07 14H7.1c-.07-.65-.1-1.32-.1-2s.03-1.35.1-2H4.07a8.05 8.05 0 0 0 0 4zm1.04 2h3.16c.34 1.32.85 2.55 1.5 3.55A8.04 8.04 0 0 1 5.11 16zm0-8h3.16c.65-1 1.16-2.23 1.5-3.55A8.04 8.04 0 0 0 5.11 8zM12 20c-.92 0-2.21-1.7-2.83-4h5.66c-.62 2.3-1.91 4-2.83 4zm3.18-6H8.83c-.08-.65-.13-1.32-.13-2s.05-1.35.13-2h6.34c.08.65.13 1.32.13 2s-.05 1.35-.12 2zm.25 5.55c.65-1 1.16-2.23 1.5-3.55h3.16a8.04 8.04 0 0 1-4.66 3.55zM16.9 14c.07-.65.1-1.32.1-2s-.03-1.35-.1-2h3.03a8.05 8.05 0 0 1 0 4h-3.03z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">Custom domain</div>
-          <div class="addon-desc">yourbrand.com instead of app.nepa-pro.com subdomain.</div>
-        </div>
-        <div class="addon-price">$10<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="30">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#ff9f0a,#ff453a)">
-          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">SMS &amp; push</div>
-          <div class="addon-desc">Text confirmations, push notifications, 2-way messaging.</div>
-        </div>
-        <div class="addon-price">$30<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="40">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#ff375f,#bf5af2)">
-          <svg viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm6 14c0 .54-2.13 2-6 2s-6-1.46-6-2v-2.23c1.61.78 3.72 1.23 6 1.23s4.39-.45 6-1.23V17zm0-4.55c-1.31.79-3.51 1.55-6 1.55s-4.69-.76-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36v2.81zM12 9c-3.87 0-6-1.5-6-2s2.13-2 6-2 6 1.5 6 2-2.13 2-6 2z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">Database &amp; user accounts</div>
-          <div class="addon-desc">User logins, saved data, profiles, dashboards.</div>
-        </div>
-        <div class="addon-price">$40<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="50">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)">
-          <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">API integrations</div>
-          <div class="addon-desc">Wire up to anything. Calendars, payroll, inventory, IoT.</div>
-        </div>
-        <div class="addon-price">$50<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="20">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#30d158,#66d4cf)">
-          <svg viewBox="0 0 24 24"><path d="M3 13h2v8H3v-8zm4-4h2v12H7V9zm4-4h2v16h-2V5zm4 7h2v9h-2v-9zm4-3h2v12h-2V9z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">Analytics dashboard</div>
-          <div class="addon-desc">Real-time visitors, conversions, revenue tracking.</div>
-        </div>
-        <div class="addon-price">$20<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-row" data-addon data-price="75">
-        <div class="addon-icon" style="background:linear-gradient(135deg,#ffd60a,#ff9f0a)">
-          <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 5v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
-        </div>
-        <div class="addon-meta">
-          <div class="addon-name">White-glove support</div>
-          <div class="addon-desc">Same-day fixes, dedicated Slack channel, monthly check-in.</div>
-        </div>
-        <div class="addon-price">$75<small>/ month</small></div>
-        <div class="toggle"></div>
-      </div>
-
-      <div class="addon-summary">
-        <div class="summary-totals">
-          <div class="summary-line"><strong>Lite tier</strong> &middot; one-time build</div>
-          <div class="summary-line"><span id="addonCount">0 add-ons selected</span></div>
-        </div>
-        <div class="summary-total">
-          $<span id="totalOnce">49</span>
-          <small>one-time +</small>
-          $<span id="totalMonthly">0</span>
-          <small>/ month</small>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ FAQ ============================ -->
+<!-- FAQ -->
 <section class="section-pad" id="faq">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="t-eyebrow">questions</span>
       <h2>Real answers. No fluff.</h2>
     </div>
-
     <div class="faq-list reveal">
       <div class="faq-item">
-        <button class="faq-q">What is a PWA exactly? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">A Progressive Web App is a website that installs and behaves like a native iOS or Android app. Customers tap "Add to Home Screen" once, and your app launches full-screen with no browser bar. It works offline, sends push notifications, and looks identical to a downloaded app &mdash; without going through the App Store or Play Store.</div></div>
+        <button class="faq-q">Why is everything a subscription? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Because nothing is "done" once. We host it, update it, fix it, and keep it running on real infrastructure. Each capability (payments, accounts, dispatch, etc.) is its own running service that costs us money to operate. Pay for what you use, cancel what you don't, scale when you grow. No giant up-front bill, no being locked into features you'll never touch.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Why not a native iOS / Android app? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Native apps cost $15K-$80K to build, take 3-6 months, and Apple takes 30%. PWAs cover 95% of the same use cases at 1% of the cost. If you eventually need a native app, the PWA codebase ports easily &mdash; we can do that as an upgrade.</div></div>
+        <button class="faq-q">What does "setup waived" actually mean? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Other shops charge $499-$5,000 just to start. We charge $0. The first month's $49 covers everything &mdash; design, build, branding, hosting setup, deployment. Your only commitment is your monthly subscription, which you can cancel anytime.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Can I publish to the App Store? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes &mdash; we can wrap your PWA in a native shell and submit it to the App Store and Google Play for an additional fee. Most clients skip this. Customers find your app via your domain or QR code, install in one tap, and you keep 100% of revenue.</div></div>
+        <button class="faq-q">Wait &mdash; what is a PWA? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">A Progressive Web App lives on the web but installs and runs like a native iOS or Android app. Customers tap "Save to Home Screen" once &mdash; your app launches full-screen, no browser bar, with its own icon. Works offline (local storage). Sends push notifications. Looks and feels identical to a downloaded app &mdash; without the App Store middleman.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What if I need changes later? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Every tier includes revisions during build. After launch, edits are billed at $50 / hour, or you can subscribe to white-glove support ($75/month) for unlimited minor changes and priority response.</div></div>
+        <button class="faq-q">Why is a PWA better than the App Store? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">No 30% Apple cut. No 15% Google cut. Updates instantly without review delays. One codebase covers iPhone + Android + desktop. Customers install in 2 seconds from any link, no App Store search. You own the relationship &mdash; no gatekeeper can shut you down. PWAs are objectively superior for 95% of small business apps.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Do I own the app? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">You own the brand, design, content, and domain. The app runs on our infrastructure (which keeps it cheap and reliable). If you ever want to self-host, we can hand off the codebase for a one-time fee.</div></div>
+        <button class="faq-q">Can I cancel? Will I lose my app? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes, cancel anytime. When you cancel, your hosted PWA goes offline (since hosting is part of the subscription). If you want a final export of your app's code and content for self-hosting, that's a one-time $499 hand-off fee &mdash; never required, only if you want it.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What is hosting and is it included? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes. Every tier includes hosting, SSL, a global CDN, and 99.9% uptime on our infrastructure. No hidden fees. The only thing that costs extra is bringing your own domain ($10/month add-on) and any backend services from the add-ons list above.</div></div>
+        <button class="faq-q">How are payments handled? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">All subscriptions run through Stripe Checkout via NEPA-PRO. Your payment method, your monthly receipt, full control to upgrade or cancel features from a single billing portal. The Stripe Payments add-on enables YOU to collect payments inside YOUR app for YOUR customers.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I add features later? Or remove them? <span class="faq-chev"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes &mdash; that's the entire model. Toggle on what you need this month. Toggle off if it's not working. The base PWA stays put; everything else flexes with your business. No "tier upgrade" friction, no replatforming.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How fast can I really launch? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Lite ships in 7 days, Pro in 5, Max in 3 once specs are locked. The biggest variable is how fast you get us your content (logo, colors, copy, photos). Have it ready and we move fast.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">5 days from your signup to live PWA. 3 days with the Priority Delivery add-on. The biggest variable is how fast you get us your content (logo, colors, copy, photos). Have it ready and we move.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Do you build it overseas? <span class="faq-chev"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">No. Every app is designed and built in-house in Northeast Pennsylvania. You talk to the people doing the work. No agencies, no Fiverr, no hand-offs.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">No. Every app is designed and built in-house in Northeast Pennsylvania. Veteran owned and operated. You talk to the people doing the work. No agencies, no Fiverr, no hand-offs.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================ FINAL CTA ============================ -->
+<!-- FINAL CTA -->
 <section class="section-pad">
   <div class="wrap">
     <div class="cta-card reveal">
-      <h2>Your app. <span class="gradient-text">Ready in days.</span></h2>
-      <p>Tell us what you need. We&rsquo;ll send specs, a quote, and a timeline within 24 hours.</p>
-      <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49</button>
+      <h2>Your app. <span class="gradient-text">Ready in 5 days.</span></h2>
+      <p>Pick your stack. We build it. Your customers install it. From $49/month. Setup waived. Cancel anytime.</p>
+      <button class="btn btn-primary" data-open-sheet>Start building &mdash; from $49/mo</button>
     </div>
   </div>
 </section>
 
-<!-- ============================ FOOTER ============================ -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot">
-      <a href="#" class="foot-brand">
-        <span class="brand-mark">a.</span>
-        <span>app.</span>
-      </a>
+      <a href="#" class="foot-brand"><span class="brand-mark">a.</span><span>app.</span></a>
       <div class="foot-links">
+        <a href="#why">Why PWA?</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
-        <a href="#addons">Add-ons</a>
         <a href="#faq">FAQ</a>
         <a href="mailto:hello@app.nepa-pro.com">Contact</a>
       </div>
-      <div>&copy; 2026 app. &middot; Built in NEPA</div>
+      <div>&copy; 2026 app. &middot; A NEPA-PRO product &middot; Veteran owned</div>
     </div>
   </div>
 </footer>
 
-<!-- ============================ TAB BAR ============================ -->
+<!-- TAB BAR -->
 <nav class="tabbar">
-  <a href="#" class="tab active">
-    <svg viewBox="0 0 24 24"><path d="M12 3l9 8h-2v9h-5v-6h-4v6H5v-9H3z"/></svg>
-    <span class="tab-label">Home</span>
-  </a>
-  <a href="#showcase" class="tab">
-    <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg>
-    <span class="tab-label">Apps</span>
-  </a>
-  <a href="#pricing" class="tab">
-    <svg viewBox="0 0 24 24"><path d="M21 7l-1.4 1.4-3.6-3.6L17.4 3.4 21 7zm-9 13l-9-9V4h7l9 9-7 7zm-5-15a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
-    <span class="tab-label">Pricing</span>
-  </a>
-  <a href="#addons" class="tab">
-    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
-    <span class="tab-label">Add-ons</span>
-  </a>
-  <button class="tab" data-open-sheet>
-    <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-    <span class="tab-label">Start</span>
-  </button>
+  <a href="#" class="tab active"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-2v9h-5v-6h-4v6H5v-9H3z"/></svg><span class="tab-label">Home</span></a>
+  <a href="#why" class="tab"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6h2v6zm0-8h-2V7h2v4z"/></svg><span class="tab-label">Why</span></a>
+  <a href="#showcase" class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg><span class="tab-label">Apps</span></a>
+  <a href="#pricing" class="tab"><svg viewBox="0 0 24 24"><path d="M21 7l-1.4 1.4-3.6-3.6L17.4 3.4 21 7zm-9 13l-9-9V4h7l9 9-7 7zm-5-15a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg><span class="tab-label">Pricing</span></a>
+  <button class="tab" data-open-sheet><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><span class="tab-label">Start</span></button>
 </nav>
 
-<!-- ============================ SHEET MODAL ============================ -->
+<!-- SHEET MODAL -->
 <div class="sheet-backdrop" id="sheetBackdrop"></div>
 <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetTitle" aria-modal="true">
   <div class="sheet-handle"></div>
   <div class="sheet-header">
-    <h3 id="sheetTitle">Start your app</h3>
+    <h3 id="sheetTitle">Subscribe to your stack</h3>
     <button class="sheet-close" id="sheetClose" aria-label="Close"></button>
+  </div>
+  <div class="sheet-stack-preview" id="sheetStackPreview">
+    <strong>Your selected stack:</strong>
+    <div id="sheetStackContent">Base PWA only &mdash; <span class="total">$49/month</span></div>
   </div>
   <form id="briefForm" novalidate>
     <div class="field">
@@ -1953,49 +1987,38 @@ footer {
       <input class="field-input" id="f-business" name="business" type="text" autocomplete="organization">
     </div>
     <div class="field">
-      <label class="field-label" for="f-tier">Tier</label>
-      <select class="field-input" id="f-tier" name="tier">
-        <option value="lite">Lite &mdash; $49</option>
-        <option value="pro" selected>Pro &mdash; $99</option>
-        <option value="max">Max &mdash; $150</option>
-        <option value="not-sure">Not sure yet</option>
-      </select>
-    </div>
-    <div class="field">
       <label class="field-label" for="f-brief">What's the app for?</label>
-      <textarea class="field-textarea" id="f-brief" name="brief" placeholder="A loyalty app for our coffee shop. Customers earn stamps. We push specials..."></textarea>
+      <textarea class="field-textarea" id="f-brief" name="brief" placeholder="A loyalty app for our coffee shop. Customers earn stamps, we push specials..."></textarea>
     </div>
-    <button type="submit" class="sheet-submit">Send my brief</button>
-    <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">We reply within 24 hours, typically same day.</p>
+    <button type="submit" class="sheet-submit">Send my brief &mdash; we reply same day</button>
+    <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:14px">We send your custom Stripe Checkout link within 24 hours.</p>
   </form>
 </div>
 
 <script>
-/* ============================ status bar live time ============================ */
+// status bar live time
 (function tickClock(){
   const el = document.getElementById('sbTime');
   function update(){
     const d = new Date();
     let h = d.getHours();
     const m = String(d.getMinutes()).padStart(2,'0');
-    const ampm = h >= 12 ? '' : '';
     h = h % 12 || 12;
     el.textContent = h + ':' + m;
   }
-  update();
-  setInterval(update, 30000);
+  update(); setInterval(update, 30000);
 })();
 
-/* ============================ dynamic island ticker ============================ */
+// dynamic island ticker
 (function islandTicker(){
   const el = document.getElementById('islandText');
   const messages = [
-    '<strong>app.</strong> &mdash; ready in 5 days',
-    '<strong>17 apps</strong> shipped this month',
-    '<strong>From $49</strong> &mdash; one-time build',
-    '<strong>iOS, Android, web</strong> &mdash; one app',
-    '<strong>Hosted by us.</strong> Zero setup.',
-    '<strong>$0</strong> App Store fees, ever'
+    '<strong>app.</strong> &mdash; from $49/mo, setup waived',
+    '<strong>0%</strong> App Store / Play Store cut',
+    '<strong>5 days</strong> &mdash; signup to live PWA',
+    '<strong>iPhone, Android, desktop</strong> &mdash; one app',
+    '<strong>Cancel anytime.</strong> No lock-in.',
+    '<strong>Works offline.</strong> Local storage.'
   ];
   let i = 0;
   setInterval(() => {
@@ -2014,136 +2037,48 @@ footer {
   }, 4500);
 })();
 
-/* ============================ pricing segmented control ============================ */
-(function pricing(){
-  const tiers = {
-    lite: {
-      tier: 'Lite',
-      badge: 'Foundation',
-      badgeClass: '',
-      price: '49',
-      desc: 'A clean, single-purpose app. Perfect for menus, schedules, info portals, and simple landing apps. Hosted by us. Installable everywhere.',
-      glow: 'var(--grad-blue)',
-      features: [
-        'Up to 5 sections / screens',
-        'Hosted on app.nepa-pro.com subdomain',
-        'Mobile-first PWA, installable on iOS &amp; Android',
-        'Custom logo, colors, photos',
-        '7-day delivery',
-        'One round of revisions'
-      ]
-    },
-    pro: {
-      tier: 'Pro',
-      badge: 'Most popular',
-      badgeClass: 'popular',
-      price: '99',
-      desc: 'Multi-page apps with branded navigation, form capture, and basic analytics. The sweet spot for most local businesses.',
-      glow: 'var(--grad-purple)',
-      features: [
-        'Up to 20 sections / screens',
-        'Multi-page navigation &amp; routing',
-        'Custom branding, photos, content',
-        'Contact &amp; lead capture forms',
-        'Basic analytics dashboard',
-        'iOS-style components &amp; transitions',
-        '5-day delivery',
-        'Three rounds of revisions'
-      ]
-    },
-    max: {
-      tier: 'Max',
-      badge: 'Power tier',
-      badgeClass: '',
-      price: '150',
-      desc: 'Full iOS-native feel. Unlimited sections. Push-ready. For apps that need to feel as polished as anything in the App Store.',
-      glow: 'var(--grad-pink)',
-      features: [
-        'Unlimited sections / screens',
-        'Full iOS-native components: sheets, tabs, segmented controls',
-        'Push notification framework, ready to activate',
-        'Advanced animations &amp; transitions',
-        'Dark mode + light mode',
-        'Priority 3-day delivery',
-        'Onboarding flow &amp; splash screens',
-        '30 days of revisions'
-      ]
-    }
-  };
+// subscription stack logic
+const BASE_PRICE = 49;
+const stackList = document.getElementById('stackList');
+const stackTotalEl = document.getElementById('stackTotal');
+const stackSubEl = document.getElementById('stackSub');
+const sheetStackContent = document.getElementById('sheetStackContent');
 
-  const card = document.getElementById('priceCard');
-  const badge = document.getElementById('priceBadge');
-  const tierEl = document.getElementById('priceTier');
-  const priceNum = document.getElementById('priceNum');
-  const priceDesc = document.getElementById('priceDesc');
-  const features = document.getElementById('priceFeatures');
-  const buttons = document.querySelectorAll('.seg-btn');
-  const thumb = document.getElementById('segThumb');
-  const summaryTier = document.querySelector('.summary-line strong');
+function updateStack(){
+  const active = Array.from(document.querySelectorAll('.sub.on'));
+  let monthly = BASE_PRICE;
+  active.forEach(s => monthly += parseInt(s.dataset.price));
 
-  function setTier(key){
-    const t = tiers[key];
-    badge.textContent = t.badge;
-    badge.className = 'price-badge ' + t.badgeClass;
-    tierEl.textContent = t.tier;
-    priceNum.textContent = t.price;
-    priceDesc.textContent = t.desc;
-    card.style.setProperty('--card-glow', t.glow);
-    features.innerHTML = t.features.map(f => `
-      <li><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"/><path d="M6 10l3 3 5-6" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>${f}</li>
-    `).join('');
-    if (summaryTier) summaryTier.textContent = t.tier + ' tier';
-    window.__currentTier = key;
-    window.__currentTierPrice = parseInt(t.price);
-    updateTotals();
-  }
-
-  function moveThumb(activeBtn){
-    const r = activeBtn.getBoundingClientRect();
-    const parent = activeBtn.parentElement.getBoundingClientRect();
-    thumb.style.width = r.width + 'px';
-    thumb.style.transform = `translateX(${r.left - parent.left - 3}px)`;
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      setTier(btn.dataset.tier);
-      moveThumb(btn);
-    });
+  // build stack list
+  let html = '<div class="stack-line required"><div class="stack-line-name"><strong>Base PWA</strong><small>Custom-built, hosted, installable</small></div><div class="stack-line-price">$' + BASE_PRICE + '<small>/mo</small></div></div>';
+  active.forEach(s => {
+    html += '<div class="stack-line"><div class="stack-line-name"><strong>' + s.dataset.name + '</strong></div><div class="stack-line-price">$' + s.dataset.price + '<small>/mo</small></div></div>';
   });
+  stackList.innerHTML = html;
 
-  // initial position once layout is done
-  requestAnimationFrame(() => moveThumb(document.querySelector('.seg-btn.active')));
-  window.addEventListener('resize', () => moveThumb(document.querySelector('.seg-btn.active')));
-  window.__currentTier = 'lite';
-  window.__currentTierPrice = 49;
-})();
+  stackTotalEl.textContent = monthly;
+  stackSubEl.textContent = active.length === 0
+    ? 'Base PWA only'
+    : 'Base + ' + active.length + ' add-on' + (active.length === 1 ? '' : 's');
 
-/* ============================ add-ons ============================ */
-function updateTotals(){
-  const rows = document.querySelectorAll('.addon-row.on');
-  let monthly = 0;
-  rows.forEach(r => monthly += parseInt(r.dataset.price));
-  document.getElementById('totalOnce').textContent = window.__currentTierPrice || 49;
-  document.getElementById('totalMonthly').textContent = monthly;
-  const c = document.getElementById('addonCount');
-  c.textContent = rows.length === 0 ? '0 add-ons selected'
-    : rows.length + ' add-on' + (rows.length === 1 ? '' : 's') + ' selected';
+  // update sheet preview
+  if (active.length === 0) {
+    sheetStackContent.innerHTML = 'Base PWA only &mdash; <span class="total">$' + monthly + '/month</span>';
+  } else {
+    const names = active.map(s => s.dataset.name).join(', ');
+    sheetStackContent.innerHTML = 'Base PWA + ' + names + ' &mdash; <span class="total">$' + monthly + '/month</span>';
+  }
 }
 
-(function addonsInit(){
-  document.querySelectorAll('.addon-row').forEach(row => {
-    row.addEventListener('click', () => {
-      row.classList.toggle('on');
-      updateTotals();
-    });
+document.querySelectorAll('.sub').forEach(s => {
+  s.addEventListener('click', () => {
+    s.classList.toggle('on');
+    updateStack();
   });
-  updateTotals();
-})();
+});
+updateStack();
 
-/* ============================ FAQ accordion ============================ */
+// FAQ accordion
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => {
     const item = q.parentElement;
@@ -2154,13 +2089,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-/* ============================ sheet modal ============================ */
+// sheet modal
 (function sheet(){
   const sheet = document.getElementById('sheet');
   const backdrop = document.getElementById('sheetBackdrop');
   const close = document.getElementById('sheetClose');
   const opens = document.querySelectorAll('[data-open-sheet]');
-
   function open(){
     sheet.classList.add('open');
     backdrop.classList.add('open');
@@ -2177,12 +2111,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
   backdrop.addEventListener('click', shut);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
 
-  // sync sheet tier with selected pricing tier
-  const tierSel = document.getElementById('f-tier');
-  const seg = document.querySelectorAll('.seg-btn');
-  seg.forEach(b => b.addEventListener('click', () => { tierSel.value = b.dataset.tier; }));
-
-  // form submit
   document.getElementById('briefForm').addEventListener('submit', e => {
     e.preventDefault();
     const f = e.target;
@@ -2192,13 +2120,22 @@ document.querySelectorAll('.faq-q').forEach(q => {
       alert('Please add at least your name and email.');
       return;
     }
-    // For now, mailto fallback. Wire to backend later.
-    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${f['phone'].value}%0D%0ABusiness: ${f['business'].value}%0D%0ATier: ${f['tier'].value}%0D%0A%0D%0ABrief:%0D%0A${encodeURIComponent(f['brief'].value)}`;
-    window.location.href = `mailto:hello@app.nepa-pro.com?subject=New%20brief%20from%20${encodeURIComponent(name)}&body=${body}`;
+    // gather selected stack
+    const active = Array.from(document.querySelectorAll('.sub.on'));
+    let stackText = '* Base PWA - $' + BASE_PRICE + '/mo (always required)\n';
+    let monthly = BASE_PRICE;
+    active.forEach(s => {
+      stackText += '* ' + s.dataset.name + ' - $' + s.dataset.price + '/mo\n';
+      monthly += parseInt(s.dataset.price);
+    });
+    stackText += '\nMONTHLY TOTAL: $' + monthly + '/month';
+
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${f['phone'].value}%0D%0ABusiness: ${f['business'].value}%0D%0A%0D%0ASELECTED STACK:%0D%0A${encodeURIComponent(stackText)}%0D%0A%0D%0ABrief:%0D%0A${encodeURIComponent(f['brief'].value)}`;
+    window.location.href = `mailto:hello@app.nepa-pro.com?subject=New%20stack%20subscription%20from%20${encodeURIComponent(name)}&body=${body}`;
   });
 })();
 
-/* ============================ reveal on scroll ============================ */
+// reveal on scroll
 (function reveals(){
   const els = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
@@ -2212,13 +2149,12 @@ document.querySelectorAll('.faq-q').forEach(q => {
   els.forEach(el => io.observe(el));
 })();
 
-/* ============================ register service worker ============================ */
+// register service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
 </script>
-
 </body>
 </html>

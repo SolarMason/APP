@@ -56,16 +56,16 @@
           fill="#ffffff">app.</text>
   </g>
 
-  <!-- "from $49" pill (top-right) -->
-  <g transform="translate(906, 78)">
-    <rect width="170" height="44" rx="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <!-- "from $49/mo" pill (top-right) -->
+  <g transform="translate(880, 78)">
+    <rect width="200" height="44" rx="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
     <circle cx="22" cy="22" r="5" fill="#30d158"/>
     <text x="42" y="28"
           font-family="'Inter', -apple-system, sans-serif"
           font-weight="600"
           font-size="14"
           letter-spacing="1"
-          fill="rgba(255,255,255,0.92)">FROM $49</text>
+          fill="rgba(255,255,255,0.92)">FROM $49/MO</text>
   </g>
 
   <!-- ============ CENTER: GIANT "app." MARK ============ -->
@@ -95,7 +95,7 @@
         font-size="20"
         letter-spacing="-0.3"
         text-anchor="middle"
-        fill="rgba(255,255,255,0.55)">Installable on iPhone, Android, and desktop. Shipped in days, not months.</text>
+        fill="rgba(255,255,255,0.55)">From $49/month. Setup waived. iPhone, Android, desktop.</text>
 
   <!-- ============ FOOTER URL ============ -->
   <text x="600" y="582"

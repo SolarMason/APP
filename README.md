@@ -2,80 +2,69 @@
 
 > We build your app. You run your business.
 
-PWA-as-a-service marketing site for **app.nepa-pro.com** — a NEPA-PRO product.
+A NEPA-PRO product. Marketing site for **app.nepa-pro.com** — a PWA-as-a-service business.
+
+## Business model
+
+- **Pure subscription. Nothing is one-time.** Setup is always waived.
+- **Base PWA: $49/month.** Required, always-on. Includes the custom-built app, hosting, SSL, CDN, save-to-home-screen, offline mode, branding.
+- **Every capability is its own stackable subscription.** Email, SMS, payments, accounts, bookings, dispatch, etc. — toggle on what you need.
+- **Stripe Checkout via nepa-pro.com** handles all billing.
+- **Cancel anytime.** No lock-in. App goes offline when subscription stops (since hosting is part of the sub).
+
+## Add-on subscription catalog (27 items, 7 categories)
+
+| Category | Add-ons | Price range |
+|---|---|---|
+| Communications | Email, SMS, Push, Live chat, AI chatbot, Newsletter | $15-$39/mo |
+| Commerce | Stripe payments, Subscriptions, Catalog, Invoicing, Coupons | $15-$35/mo |
+| Users & Accounts | Auth, Social login, Member portal, Roles | $15-$39/mo |
+| Data & Content | Database, CRM, Analytics, CMS, Gallery, Search | $15-$35/mo |
+| Booking | Appointments, Reservations, Events, Calendar sync | $15-$29/mo |
+| Operations | Job dispatch, Quotes, Reviews, Loyalty, Referrals | $15-$35/mo |
+| Premium | Custom domain, White-glove, Native wrap, Priority | $9-$99/mo |
+
+Edit pricing/add-ons by changing `data-price` and content of `.sub` cards in `index.html`.
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `index.html` | Single-page marketing site (all CSS + JS inline) |
-| `manifest.json` | PWA manifest — makes the site installable |
-| `sw.js` | Service worker — offline cache, install prompt support |
-| `icon.svg` | Master icon (vector source) |
-| `icon-192.png` | PWA icon, 192×192 |
-| `icon-512.png` | PWA icon, 512×512 |
-| `icon-1024.png` | High-res icon (Apple Touch, app store wrappers) |
-| `icon-maskable.png` | Android maskable icon |
-| `og-card.svg` | Open Graph share card (vector source) |
-| `og-card.png` | Open Graph share card, 1200×630 (referenced in `<meta>`) |
+| `index.html` | Single-page marketing site (all CSS + JS inline, ~100 KB) |
+| `manifest.json` | PWA manifest |
+| `sw.js` | Service worker (offline cache) |
+| `icon.svg` | Master icon source |
+| `icon-*.png` | Rendered PWA icons (192, 512, 1024, maskable) |
+| `og-card.svg` / `og-card.png` | OG share card source + render |
+| `.github/workflows/deploy.yml` | GitHub Actions auto-deploy |
+| `CNAME` | Custom domain binding (`app.nepa-pro.com`) |
 
 ## Deploy to GitHub Pages
 
 1. Create a new repo (e.g. `app-nepa-pro`)
-2. Drop all these files at the **root** of the repo
-3. Settings → Pages → Source: `main` branch, `/` (root)
-4. Add a custom domain: `app.nepa-pro.com`
-5. In your DNS, add a CNAME: `app` → `<username>.github.io`
-6. Wait for SSL (5-15 min)
+2. Push all these files to `main`
+3. Settings → Pages → Source: **GitHub Actions**
+4. DNS: add a CNAME record `app` → `<your-username>.github.io`
+5. The included workflow auto-deploys on every push to `main`.
+6. The included `CNAME` file binds the custom domain.
 
-## Deploy via GitHub Actions (recommended for production)
-
-If you want to use the same workflow pattern as `Solar-Mason-Dev`:
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-Then in repo Settings → Pages → Source: **GitHub Actions**.
+First push triggers the workflow (~30-60s). HTTPS cert provisions in 5-15 min.
 
 ## Local testing
 
 ```bash
-# any static server — python is easiest
 python3 -m http.server 8000
-# then open http://localhost:8000
+# open http://localhost:8000
 ```
 
-To test PWA installability you need HTTPS — either deploy to Pages, or use `ngrok http 8000`.
+To test PWA installability you need HTTPS — deploy to Pages, or use `ngrok http 8000`.
 
 ## Customizing later
 
 - All CSS/JS is inline in `index.html`. Edit one file, redeploy.
-- Form currently uses `mailto:` fallback to `hello@app.nepa-pro.com`. Swap to a real backend (Cloudflare Worker, SuiteDash, Formspree, etc.) by replacing the submit handler near the bottom of the `<script>` block.
-- Pricing tiers live in the `tiers` object inside the pricing IIFE. Edit there to change names/prices/features.
-- Add-ons are `<div class="addon-row">` elements with `data-price` attributes. Add/remove rows; the totals recompute automatically.
+- Form currently uses `mailto:` to `hello@app.nepa-pro.com` and includes the customer's selected stack in the email body — so you know exactly what to invoice for.
+- When ready, swap the form submit handler to POST to a Cloudflare Worker / SuiteDash / Stripe Checkout URL on nepa-pro.com.
+- The base PWA price (`BASE_PRICE = 49`) and all add-on prices live in the cards' `data-price` attributes. Edit there.
 
 ## Brand
 
