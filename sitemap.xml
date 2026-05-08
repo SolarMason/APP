@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://app.nepa-pro.com/</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://app.nepa-pro.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://app.nepa-pro.com/"/>
+    <image:image>
+      <image:loc>https://app.nepa-pro.com/og-card.png</image:loc>
+      <image:title>app. by NEPA-PRO — custom PWA for your business</image:title>
+      <image:caption>Custom Progressive Web App development in Northeast Pennsylvania, from $49/month with setup waived</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://app.nepa-pro.com/icon-512.png</image:loc>
+      <image:title>app. by NEPA-PRO logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://app.nepa-pro.com/icon-1024.png</image:loc>
+      <image:title>NEPA-PRO app. high-resolution logo</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#pwa-intro</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#why</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#how</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#pricing</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#faq</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://app.nepa-pro.com/#showcase</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

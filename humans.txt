@@ -1,0 +1,25 @@
+/* TEAM */
+  Founder: Noel Segui
+  Site: nepa-pro.com
+  Location: Clarks Summit, Pennsylvania, USA
+  Contact: service@nepa-pro.com
+  Phone: 570-677-7971
+
+/* THANKS */
+  To every NEPA business owner who chose to build local.
+
+/* SITE */
+  Last update: 2026/05/08
+  Standards: HTML5, CSS3, JavaScript (ES2020+), PWA, Service Worker
+  Components: Vanilla JS, no frameworks
+  Software: Custom-built. Hosted on GitHub Pages with Cloudflare CDN.
+  Built with: pride, in Northeast Pennsylvania
+
+  Veteran owned. Veteran operated. Made in NEPA.
+
+           ___ _ __  _ __
+          / _` | '_ \| '_ \
+         | (_| | |_) | |_) |
+          \__,_| .__/| .__/
+               |_|   |_|
+       a NEPA-PRO product

@@ -1,14 +1,19 @@
 {
-  "name": "app.",
+  "id": "app.nepa-pro.com",
+  "name": "app. by NEPA-PRO",
   "short_name": "app.",
-  "description": "We build your app. From $49. PWA, iOS, Android — installable on every device.",
+  "description": "Custom Progressive Web Apps for businesses in Northeast Pennsylvania. Built by NEPA-PRO in Clarks Summit, PA. From $49/month. Setup waived. Veteran owned and operated.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "orientation": "portrait-primary",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "categories": ["business", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "developer", "utilities"],
+  "iarc_rating_id": "",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -29,24 +34,64 @@
       "purpose": "maskable"
     },
     {
+      "src": "/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     }
   ],
+  "screenshots": [
+    {
+      "src": "/og-card.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "app. by NEPA-PRO — custom PWAs for Northeast Pennsylvania businesses"
+    }
+  ],
   "shortcuts": [
     {
-      "name": "Start a build",
-      "short_name": "Start",
-      "url": "/?start=1",
+      "name": "Subscribe — $49/month",
+      "short_name": "Subscribe",
+      "description": "Subscribe to the base PWA — $49/month, setup waived",
+      "url": "/#pricing",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Pricing",
-      "short_name": "Pricing",
+      "name": "Build a custom quote",
+      "short_name": "Quote",
+      "description": "Use the live quote builder to mix and match add-on subscriptions",
       "url": "/#pricing",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Why a PWA?",
+      "short_name": "Why PWA",
+      "description": "Learn why a PWA beats native iOS and Android apps",
+      "url": "/#pwa-intro",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Contact NEPA-PRO",
+      "short_name": "Contact",
+      "description": "Call, email, or message NEPA-PRO directly",
+      "url": "/#faq",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred"
 }

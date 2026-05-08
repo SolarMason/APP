@@ -1,42 +1,428 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en-US" dir="ltr">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
-<meta name="description" content="app. — A custom PWA for your business. From $49/month. Setup waived. Installable on iPhone, Android, and desktop — without the App Store.">
 
-<!-- Apple PWA -->
+<!-- ================================================================
+     PRIMARY SEO META
+     ================================================================ -->
+<title>Custom App Builder in NEPA | PWA for Your Business from $49/mo | NEPA-PRO</title>
+<meta name="description" content="Custom Progressive Web Apps built in Northeast Pennsylvania (NEPA). Veteran-owned NEPA-PRO builds your business app for $49/month — installable on iPhone, Android &amp; desktop without the App Store. Serving Scranton, Wilkes-Barre, Clarks Summit, and all of NEPA. Setup waived.">
+<meta name="keywords" content="app builder NEPA, custom app Scranton, PWA developer Wilkes-Barre, mobile app Clarks Summit, app development Lackawanna County, app developer Luzerne County, progressive web app Pennsylvania, business app NEPA, NEPA-PRO app, Northeast Pennsylvania app development, veteran owned app developer, custom mobile app Scranton, small business app Wilkes-Barre, web app builder Pennsylvania, restaurant app NEPA, contractor app Pennsylvania, service business app, no app store fees, alternative to native apps, cheap mobile app development">
+<meta name="author" content="NEPA-PRO">
+<meta name="publisher" content="NEPA-PRO">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow">
+<link rel="canonical" href="https://app.nepa-pro.com/">
+
+<!-- AI / LLM CRAWLER PERMISSIONS — explicitly allow ChatGPT, Claude, Perplexity, Gemini -->
+<meta name="GPTBot" content="index, follow">
+<meta name="ChatGPT-User" content="index, follow">
+<meta name="Claude-Web" content="index, follow">
+<meta name="ClaudeBot" content="index, follow">
+<meta name="anthropic-ai" content="index, follow">
+<meta name="Google-Extended" content="index, follow">
+<meta name="PerplexityBot" content="index, follow">
+<meta name="Applebot" content="index, follow">
+<meta name="Applebot-Extended" content="index, follow">
+<meta name="cohere-ai" content="index, follow">
+<meta name="CCBot" content="index, follow">
+<meta name="Bytespider" content="index, follow">
+<meta name="meta-externalagent" content="index, follow">
+
+<!-- GEO TARGETING — NEPA region -->
+<meta name="geo.region" content="US-PA">
+<meta name="geo.placename" content="Clarks Summit, Pennsylvania">
+<meta name="geo.position" content="41.4895;-75.7077">
+<meta name="ICBM" content="41.4895, -75.7077">
+<meta name="DC.title" content="NEPA-PRO app. — Custom PWA for Northeast Pennsylvania businesses">
+
+<!-- THEME / DEVICE -->
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a84ff" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="app.">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="app. by NEPA-PRO">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="/browserconfig.xml">
+
+<!-- ICONS -->
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png">
-
-<!-- PWA -->
+<link rel="apple-touch-icon" sizes="1024x1024" href="/icon-1024.png">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/svg+xml" href="/icon.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="mask-icon" href="/icon.svg" color="#0a84ff">
 
-<!-- Open Graph -->
-<title>app. — Custom PWA for your business. From $49/month.</title>
-<meta property="og:title" content="app. — Custom PWA for your business. From $49/month.">
-<meta property="og:description" content="A custom PWA — installable on iPhone, Android, and desktop. We build, host, and run it. Setup waived. Better than the App Store.">
+<!-- ALTERNATIVE FORMATS -->
+<link rel="alternate" type="application/rss+xml" title="app. by NEPA-PRO" href="https://app.nepa-pro.com/feed.xml">
+<link rel="alternate" hreflang="en" href="https://app.nepa-pro.com/">
+<link rel="alternate" hreflang="x-default" href="https://app.nepa-pro.com/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- PERFORMANCE — preconnect / dns-prefetch -->
+<link rel="preconnect" href="https://secure.nepa-pro.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://secure.nepa-pro.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+<!-- ================================================================
+     OPEN GRAPH (Facebook, LinkedIn, iMessage, Slack)
+     ================================================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="app. by NEPA-PRO">
+<meta property="og:title" content="Custom App Builder in NEPA | PWA for Your Business from $49/mo">
+<meta property="og:description" content="Veteran-owned NEPA-PRO builds your business a custom app — installable on iPhone, Android, and desktop without the App Store. From $49/month. Setup waived. Serving all of Northeast Pennsylvania.">
+<meta property="og:url" content="https://app.nepa-pro.com/">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://app.nepa-pro.com/og-card.png">
+<meta property="og:image:secure_url" content="https://app.nepa-pro.com/og-card.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://app.nepa-pro.com">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="app.">
+<meta property="og:image:alt" content="app. by NEPA-PRO — custom PWA for your business, from $49/month">
+<meta property="business:contact_data:street_address" content="14012 Orchard Drive">
+<meta property="business:contact_data:locality" content="Clarks Summit">
+<meta property="business:contact_data:region" content="PA">
+<meta property="business:contact_data:postal_code" content="18411">
+<meta property="business:contact_data:country_name" content="United States">
+<meta property="place:location:latitude" content="41.4895">
+<meta property="place:location:longitude" content="-75.7077">
 
-<!-- Twitter -->
+<!-- ================================================================
+     TWITTER / X
+     ================================================================ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="app. — Custom PWA for your business. From $49/month.">
-<meta name="twitter:description" content="A custom PWA — installable on iPhone, Android, and desktop. Setup waived. Better than the App Store.">
+<meta name="twitter:site" content="@nepapro">
+<meta name="twitter:creator" content="@nepapro">
+<meta name="twitter:title" content="Custom App Builder in NEPA | PWA from $49/mo | NEPA-PRO">
+<meta name="twitter:description" content="Veteran-owned NEPA-PRO builds your business a custom app — installable on every device without the App Store. From $49/month. Setup waived.">
 <meta name="twitter:image" content="https://app.nepa-pro.com/og-card.png">
+<meta name="twitter:image:alt" content="app. by NEPA-PRO — custom PWA for your business">
+
+<!-- ================================================================
+     STRUCTURED DATA — JSON-LD (LocalBusiness + Service + Org)
+     This is the PRIMARY signal for Google, Siri, Alexa, ChatGPT, Claude
+     ================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
+      "@id": "https://app.nepa-pro.com/#business",
+      "name": "NEPA-PRO app.",
+      "alternateName": ["app. by NEPA-PRO", "NEPA-PRO App Development", "NEPA App Builder"],
+      "legalName": "NEPA-PRO LLC",
+      "description": "Veteran-owned custom app development company in Northeast Pennsylvania. Builds Progressive Web Apps (PWAs) for small businesses — installable on iPhone, Android, and desktop without the App Store. From $49/month with setup waived.",
+      "url": "https://app.nepa-pro.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://app.nepa-pro.com/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": [
+        "https://app.nepa-pro.com/og-card.png",
+        "https://app.nepa-pro.com/icon-1024.png"
+      ],
+      "telephone": "+1-570-677-7971",
+      "email": "service@nepa-pro.com",
+      "priceRange": "$49-$500/month",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Credit Card, Stripe, ACH",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "14012 Orchard Drive",
+        "addressLocality": "Clarks Summit",
+        "addressRegion": "PA",
+        "postalCode": "18411",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.4895,
+        "longitude": -75.7077
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Clarks Summit", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Scranton", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Wilkes-Barre", "containedInPlace": "Luzerne County, Pennsylvania" },
+        { "@type": "City", "name": "Dunmore", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Dickson City", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Carbondale", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Old Forge", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Olyphant", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Moosic", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Taylor", "containedInPlace": "Lackawanna County, Pennsylvania" },
+        { "@type": "City", "name": "Tunkhannock", "containedInPlace": "Wyoming County, Pennsylvania" },
+        { "@type": "City", "name": "Honesdale", "containedInPlace": "Wayne County, Pennsylvania" },
+        { "@type": "City", "name": "Hazleton", "containedInPlace": "Luzerne County, Pennsylvania" },
+        { "@type": "City", "name": "Pittston", "containedInPlace": "Luzerne County, Pennsylvania" },
+        { "@type": "City", "name": "Kingston", "containedInPlace": "Luzerne County, Pennsylvania" },
+        { "@type": "City", "name": "Stroudsburg", "containedInPlace": "Monroe County, Pennsylvania" },
+        { "@type": "City", "name": "Mount Pocono", "containedInPlace": "Monroe County, Pennsylvania" },
+        { "@type": "City", "name": "Milford", "containedInPlace": "Pike County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Northeast Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Lackawanna County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Luzerne County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Wayne County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Wyoming County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Monroe County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Pike County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Susquehanna County, Pennsylvania" },
+        { "@type": "AdministrativeArea", "name": "Bradford County, Pennsylvania" }
+      ],
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.4895,
+          "longitude": -75.7077
+        },
+        "geoRadius": "80467"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "knowsAbout": [
+        "Progressive Web Apps",
+        "PWA development",
+        "Custom mobile app development",
+        "Small business app development",
+        "Web app development",
+        "iOS app alternatives",
+        "Android app alternatives",
+        "Stripe integration",
+        "Subscription billing",
+        "Push notifications",
+        "Offline web apps",
+        "Service worker development",
+        "Mobile-first design",
+        "Northeast Pennsylvania business services",
+        "App Store alternatives"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Noel Segui",
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://app.nepa-pro.com/#business" }
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Veteran-Owned Businesses of America"
+      },
+      "sameAs": [
+        "https://nepa-pro.com",
+        "https://solarmason.com"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Progressive Web App Subscriptions",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Base PWA",
+            "description": "Custom Progressive Web App with hosting, SSL, install-to-home-screen, offline support, and 5 sections.",
+            "price": "49.00",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "49.00",
+              "priceCurrency": "USD",
+              "billingDuration": "P1M",
+              "unitText": "MON"
+            },
+            "url": "https://secure.nepa-pro.com/b/eVqcN5bch5HtgkB9O52cg0n",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "12",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "slogan": "We build your app. You run your business."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://app.nepa-pro.com/#service",
+      "serviceType": "Custom Progressive Web App Development",
+      "provider": { "@id": "https://app.nepa-pro.com/#business" },
+      "name": "Custom App Development for NEPA Businesses",
+      "description": "We design, build, host, and maintain custom Progressive Web Apps for businesses in Northeast Pennsylvania. Your app is installable on iPhone, Android, and desktop without the App Store, works offline, and updates instantly. Launches in 5 days. Setup is always waived.",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Northeast Pennsylvania"
+      },
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Small Businesses, Service Companies, Restaurants, Contractors, Real Estate, Retailers, Professional Services"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "49.00",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "49.00",
+          "priceCurrency": "USD",
+          "billingDuration": "P1M"
+        }
+      },
+      "category": ["Mobile App Development", "Web Development", "Software Development"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://app.nepa-pro.com/#website",
+      "url": "https://app.nepa-pro.com/",
+      "name": "app. by NEPA-PRO",
+      "description": "Custom PWA development for Northeast Pennsylvania businesses",
+      "publisher": { "@id": "https://app.nepa-pro.com/#business" },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://app.nepa-pro.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://app.nepa-pro.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "NEPA-PRO", "item": "https://nepa-pro.com" },
+        { "@type": "ListItem", "position": 2, "name": "app.", "item": "https://app.nepa-pro.com/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://app.nepa-pro.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Progressive Web App (PWA)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Progressive Web App is a custom app that lives on the web but installs and runs like a native iOS or Android app. Customers tap 'Save to Home Screen' once and your app launches full-screen with its own icon, works offline, and sends push notifications — all without the App Store."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a custom app from NEPA-PRO cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our base PWA starts at $49 per month with setup always waived. Add-on capabilities like payments, user accounts, bookings, and dispatch are optional monthly subscriptions starting at $9/month each."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build my business app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Five days from signup to live PWA. Three days with the Priority Delivery add-on. Built and hosted entirely in Clarks Summit, Pennsylvania."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas of Pennsylvania do you serve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We serve all of Northeast Pennsylvania including Scranton, Wilkes-Barre, Clarks Summit, Dunmore, Dickson City, Carbondale, Hazleton, Pittston, Kingston, Tunkhannock, Honesdale, Stroudsburg, Mount Pocono, and Milford. We work with businesses across Lackawanna County, Luzerne County, Wayne County, Wyoming County, Monroe County, Pike County, Susquehanna County, and Bradford County."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is a PWA better than a native iOS or Android app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PWAs cost a fraction of native apps ($49/month vs. $5,000-$80,000 to build). There are no Apple or Google platform fees taking 15-30% of every transaction. Updates push instantly with no review delays. One codebase covers iPhone, Android, and desktop. Your customers install in two seconds from any link, and you own the relationship without an App Store gatekeeper."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are you really based in Northeast Pennsylvania?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. NEPA-PRO is based in Clarks Summit, Pennsylvania. Every app is designed and built in-house in NEPA. Veteran owned and operated. You can reach us at 570-677-7971 or service@nepa-pro.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does my business need a custom app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you have repeat customers, take bookings, sell products, run loyalty programs, dispatch field crews, or need to send reminders — yes. Restaurants, contractors, real estate agents, salons, gyms, professional services, and retail businesses all benefit from having their own branded app on customers' home screens."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. There are no contracts or lock-in. Cancel anytime through your Stripe billing portal. When you cancel, your hosted PWA goes offline since hosting is part of the subscription."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://app.nepa-pro.com/#product",
+      "name": "Custom Progressive Web App",
+      "description": "A complete custom Progressive Web App for your business — designed, built, hosted, and maintained by NEPA-PRO in Clarks Summit, PA. Installable on iPhone, Android, and desktop without the App Store.",
+      "brand": { "@id": "https://app.nepa-pro.com/#business" },
+      "image": "https://app.nepa-pro.com/og-card.png",
+      "category": "Software Subscription",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://secure.nepa-pro.com/b/eVqcN5bch5HtgkB9O52cg0n",
+        "priceCurrency": "USD",
+        "price": "49.00",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "49.00",
+          "priceCurrency": "USD",
+          "billingDuration": "P1M",
+          "unitText": "MON"
+        },
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://app.nepa-pro.com/#business" }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "12"
+      }
+    }
+  ]
+}
+</script>
+
 
 <style>
 /* ==========================================================================
@@ -211,10 +597,23 @@ section { position: relative; z-index: 2; }
   font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
 }
 .hero h1 {
+  /* deprecated — styling moved to .hero-mark, kept as fallback */
+}
+.hero-mark {
   font-family: var(--font-display);
   font-weight: 800; letter-spacing: -0.06em; line-height: 0.85;
   font-size: clamp(96px, 28vw, 280px);
   margin-bottom: 20px;
+  color: var(--text-0);
+}
+.hero-mark .dot {
+  display: inline-block;
+  width: 0.55em; height: 0.55em;
+  background: var(--grad-hero); border-radius: 50%;
+  margin-left: -0.05em;
+  vertical-align: baseline; position: relative; bottom: -0.02em;
+  box-shadow: 0 0 80px rgba(94, 92, 230, 0.6), 0 0 40px rgba(10, 132, 255, 0.5);
+  animation: dotglow 4s var(--ease-out) infinite;
 }
 .hero h1 .dot {
   display: inline-block;
@@ -224,6 +623,19 @@ section { position: relative; z-index: 2; }
   vertical-align: baseline; position: relative; bottom: -0.02em;
   box-shadow: 0 0 80px rgba(94, 92, 230, 0.6), 0 0 40px rgba(10, 132, 255, 0.5);
   animation: dotglow 4s var(--ease-out) infinite;
+}
+
+/* visually-hidden utility — for SEO/a11y semantic content that shouldn't display */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 @keyframes dotglow {
   0%, 100% { box-shadow: 0 0 60px rgba(94, 92, 230, 0.5), 0 0 30px rgba(10, 132, 255, 0.4); }
@@ -1712,12 +2124,74 @@ footer {
   font-weight: 600; letter-spacing: -0.025em;
   margin-bottom: 16px;
 }
+
+/* ========================================================================
+   service area — NEPA cities + industries for local SEO
+   ======================================================================== */
+.service-area {
+  padding: 80px 0;
+  background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.04) 50%, transparent);
+}
+.service-area-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.service-area-col {
+  background: var(--surface-1);
+  border: 0.5px solid var(--hairline-1);
+  border-radius: var(--r-card);
+  padding: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s var(--ease-out);
+}
+.service-area-col:hover {
+  background: var(--surface-2);
+  border-color: var(--hairline-2);
+  transform: translateY(-2px);
+}
+.service-area-col h3 {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 600; letter-spacing: -0.015em;
+  color: var(--text-0);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid var(--hairline-1);
+}
+.service-area-col ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+.service-area-col li {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.service-area-meta {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-1);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.service-area-meta a {
+  color: var(--text-0);
+  font-weight: 500;
+  border-bottom: 1px solid var(--hairline-2);
+  transition: color 0.2s var(--ease);
+}
+.service-area-meta a:hover { color: var(--blue); }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#" class="brand"><span class="brand-mark">a.</span><span>app.</span></a>
     <div class="nav-links">
@@ -1732,14 +2206,16 @@ footer {
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<main id="main-content">
+<section class="hero" aria-labelledby="hero-tag">
   <div class="wrap">
     <div class="hero-eyebrow reveal">
       <span class="hero-eyebrow-badge">$0 SETUP</span>
       <span>Setup is always waived &mdash; just your monthly subscription.</span>
     </div>
-    <h1 class="reveal">app<span class="dot" aria-hidden="true"></span></h1>
-    <p class="hero-tag reveal">We build your app. <span class="muted">You run your business.</span></p>
+    <h1 class="visually-hidden">Custom App Builder in Northeast Pennsylvania &mdash; Progressive Web Apps for NEPA Businesses from $49/month</h1>
+    <div class="hero-mark reveal" aria-hidden="true">app<span class="dot"></span></div>
+    <p class="hero-tag reveal" id="hero-tag">We build your app. <span class="muted">You run your business.</span></p>
     <p class="hero-sub reveal">
       A custom PWA, hosted and managed by us. Installable on iPhone, Android, and desktop &mdash; without the App Store.
     </p>
@@ -2633,6 +3109,82 @@ footer {
   </div>
 </section>
 
+<!-- SERVICE AREA — NEPA cities for local SEO + AI/voice search -->
+<section class="service-area" aria-labelledby="service-area-heading">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="t-eyebrow">service area</span>
+      <h2 id="service-area-heading">Built in NEPA. <span class="gradient-text">Serving NEPA.</span></h2>
+      <p>NEPA-PRO is based in Clarks Summit, Pennsylvania. We design and build custom apps for businesses across all of Northeast Pennsylvania &mdash; from Scranton and Wilkes-Barre to the Poconos and the New York border.</p>
+    </div>
+
+    <div class="service-area-grid reveal">
+      <div class="service-area-col">
+        <h3>Lackawanna County</h3>
+        <ul>
+          <li>Scranton</li><li>Clarks Summit</li><li>Dunmore</li><li>Dickson City</li>
+          <li>Carbondale</li><li>Old Forge</li><li>Olyphant</li><li>Moosic</li>
+          <li>Taylor</li><li>Throop</li><li>Jermyn</li><li>Mayfield</li>
+        </ul>
+      </div>
+      <div class="service-area-col">
+        <h3>Luzerne County</h3>
+        <ul>
+          <li>Wilkes-Barre</li><li>Hazleton</li><li>Pittston</li><li>Kingston</li>
+          <li>Nanticoke</li><li>Plains</li><li>Mountain Top</li><li>Dallas</li>
+          <li>Forty Fort</li><li>Edwardsville</li><li>West Pittston</li><li>Larksville</li>
+        </ul>
+      </div>
+      <div class="service-area-col">
+        <h3>Wyoming &amp; Wayne</h3>
+        <ul>
+          <li>Tunkhannock</li><li>Factoryville</li><li>Honesdale</li><li>Hawley</li>
+          <li>Lake Ariel</li><li>Waymart</li><li>Lakewood</li><li>Forest City</li>
+        </ul>
+      </div>
+      <div class="service-area-col">
+        <h3>Monroe &amp; Pike</h3>
+        <ul>
+          <li>Stroudsburg</li><li>East Stroudsburg</li><li>Mount Pocono</li><li>Tobyhanna</li>
+          <li>Milford</li><li>Matamoras</li><li>Dingmans Ferry</li><li>Lords Valley</li>
+        </ul>
+      </div>
+      <div class="service-area-col">
+        <h3>Susquehanna &amp; Bradford</h3>
+        <ul>
+          <li>Montrose</li><li>Susquehanna</li><li>Hallstead</li><li>New Milford</li>
+          <li>Towanda</li><li>Sayre</li><li>Athens</li><li>Wyalusing</li>
+        </ul>
+      </div>
+      <div class="service-area-col">
+        <h3>Industries we serve</h3>
+        <ul>
+          <li>Restaurants &amp; cafes</li><li>Contractors &amp; trades</li>
+          <li>Real estate agents</li><li>Salons &amp; spas</li>
+          <li>Gyms &amp; studios</li><li>Auto shops</li>
+          <li>Retail &amp; e-commerce</li><li>Professional services</li>
+          <li>Healthcare practices</li><li>Property managers</li>
+          <li>Event venues</li><li>Solar installers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-area-meta reveal">
+      <p>
+        <strong>Contact NEPA-PRO directly:</strong>
+        <a href="tel:+15706777971">570-677-7971</a> &middot;
+        <a href="mailto:service@nepa-pro.com">service@nepa-pro.com</a> &middot;
+        14012 Orchard Drive, Clarks Summit, PA 18411
+      </p>
+      <p style="margin-top: 8px; color: var(--text-3); font-size: 13px;">
+        Hours: Monday&ndash;Friday 8am&ndash;6pm, Saturday 9am&ndash;2pm. Emergency support 24/7 with White-Glove subscription.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
@@ -2730,7 +3282,7 @@ footer {
 
       <div class="proposal-title-block">
         <div class="proposal-eyebrow">Custom Progressive Web App</div>
-        <h1 class="proposal-title">Your business. <span class="grad">As an app.</span></h1>
+        <h2 class="proposal-title">Your business. <span class="grad">As an app.</span></h2>
         <p class="proposal-subtitle">A custom PWA built and hosted by NEPA-PRO &mdash; installable on iPhone, Android, and desktop. Setup waived. Cancel anytime.</p>
       </div>
 
